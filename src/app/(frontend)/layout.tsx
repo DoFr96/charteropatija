@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import localFont from 'next/font/local'
+import FloatingContact from './components/FloatingContact'
 
 export const metadata = {
   description: 'Rent a boat in Opatija. A variety of choices.',
@@ -34,7 +35,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={satoshi.variable}>
-        <main>{children}</main>
+        <main>
+          {children}
+          <FloatingContact />
+        </main>
       </body>
     </html>
   )

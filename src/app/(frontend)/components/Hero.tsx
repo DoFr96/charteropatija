@@ -47,24 +47,6 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-deep-navy/50 via-transparent to-transparent md:from-deep-navy/60" />
       </div>
 
-      {/* Navbar */}
-      <header className="relative z-20 flex items-center justify-between px-5 pt-4 md:px-10 md:pt-6 lg:px-16">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold tracking-tight text-warm-white md:text-base">
-            Kvarner
-          </span>
-          <span className="text-sm font-light text-warm-white/60 md:text-base">Charter</span>
-        </div>
-
-        <button
-          className="flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-full border border-warm-white/20 md:h-10 md:w-10"
-          aria-label="Menu"
-        >
-          <span className="h-[1.5px] w-3.5 bg-warm-white md:w-4" />
-          <span className="h-[1.5px] w-3.5 bg-warm-white md:w-4" />
-        </button>
-      </header>
-
       {/* Main Content */}
       <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 md:px-10 md:pb-10 lg:px-16 lg:pb-14">
         {/* Text Content */}

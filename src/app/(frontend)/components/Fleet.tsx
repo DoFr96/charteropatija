@@ -2,12 +2,14 @@
 
 import { useState, useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Users, Ruler, Gauge, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const boats = [
   {
     id: 1,
     name: 'Cranchi Z 35',
+    slug: 'cranchi-z-35',
     image:
       'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=800&auto=format&fit=crop',
     capacity: 10,
@@ -17,6 +19,7 @@ const boats = [
   {
     id: 2,
     name: 'Cap Camarat 8.5',
+    slug: 'cap-camarat-85',
     image:
       'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop',
     capacity: 8,
@@ -26,6 +29,7 @@ const boats = [
   {
     id: 3,
     name: 'Merry Fisher 795',
+    slug: 'merry-fisher-795',
     image:
       'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop',
     capacity: 6,
@@ -35,6 +39,7 @@ const boats = [
   {
     id: 4,
     name: 'Quicksilver 755',
+    slug: 'quicksilver-755',
     image:
       'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop',
     capacity: 8,
@@ -44,6 +49,7 @@ const boats = [
   {
     id: 5,
     name: 'Beneteau Flyer 7.7',
+    slug: 'beneteau-flyer-77',
     image:
       'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop',
     capacity: 5,
@@ -53,6 +59,7 @@ const boats = [
   {
     id: 6,
     name: 'Jeanneau Leader 9',
+    slug: 'jeanneau-leader-9',
     image:
       'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=800&auto=format&fit=crop',
     capacity: 9,
@@ -62,6 +69,7 @@ const boats = [
   {
     id: 7,
     name: 'Atlantic 750 Open',
+    slug: 'atlantic-750-open',
     image:
       'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop',
     capacity: 6,
@@ -96,7 +104,7 @@ export default function FleetSection() {
   })
 
   return (
-    <section className="bg-deep-navy py-24 md:py-32 lg:py-40">
+    <section id="fleet" className="bg-deep-navy py-24 md:py-32 lg:py-40">
       {/* Header */}
       <div className="px-5 md:px-10 lg:px-16">
         <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
@@ -161,7 +169,8 @@ export default function FleetSection() {
         <div className="flex gap-5 px-5 pb-4 md:gap-8 md:px-10 lg:px-16">
           {' '}
           {filteredBoats.map((boat) => (
-            <button
+            <Link
+              href={`/boats/${boat.slug}`}
               key={boat.id}
               className="snap-start snap-always group relative w-[295px] flex-shrink-0 overflow-hidden rounded-2xl backdrop-blur-sm bg-warm-white/[0.03] border border-warm-white/10 transition-all duration-500 hover:shadow-lg hover:shadow-sand/10 hover:border-warm-white/20 hover:-translate-y-1 md:w-[400px]"
             >
@@ -212,7 +221,7 @@ export default function FleetSection() {
                   </svg>
                 </div>
               </div>
-            </button>
+            </Link>
           ))}
           {/* Spacer za padding na kraju */}
           <div className="w-1 flex-shrink-0 md:w-6" />

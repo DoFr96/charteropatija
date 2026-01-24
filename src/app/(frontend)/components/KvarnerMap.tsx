@@ -158,7 +158,7 @@ export default function KvarnerMap() {
   }, [])
   const zoom = typeof window !== 'undefined' && window.innerWidth < 768 ? 9 : 10
   return (
-    <section className="bg-deep-navy py-24 md:py-32 lg:py-40">
+    <section id="explore" className="bg-deep-navy py-24 md:py-32 lg:py-40">
       <div className="px-5 md:px-10 lg:px-16">
         <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
           Explore the
