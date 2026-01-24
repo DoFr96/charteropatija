@@ -87,7 +87,7 @@ export default function HeroSection() {
           {featuredBoats.map((boat) => (
             <div
               key={boat.id}
-              className="group relative aspect-[4/3] flex-1 overflow-hidden rounded-xl bg-deep-navy/50 md:aspect-auto md:h-24 md:w-32 md:flex-none md:rounded-lg xl:h-36 xl:w-44"
+              className="group relative aspect-[4/3] flex-1 overflow-hidden rounded-xl  md:aspect-auto md:h-24 md:w-32 md:flex-none md:rounded-lg xl:h-36 xl:w-44"
             >
               <Image src={boat.image} alt={boat.name} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/80 via-deep-navy/20 to-transparent" />
