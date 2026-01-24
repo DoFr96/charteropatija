@@ -23,7 +23,7 @@ const featuredBoats = [
 
 export default function HeroSection() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-deep-navy">
+    <section className="relative h-svh w-full overflow-hidden bg-deep-navy">
       {/* Background Image - different for mobile/desktop */}
       <div className="absolute inset-x-0 top-0 h-[90%] md:h-full">
         {/* Mobile image */}

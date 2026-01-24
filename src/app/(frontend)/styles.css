@@ -40,6 +40,12 @@ html {
   background-color: var(--page-bg, white);
 }
 
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 .gm-ui-hover-effect {
   display: none !important;
 }
