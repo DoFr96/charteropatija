@@ -20,7 +20,7 @@ const stats = [
 
 export default function InfoSection() {
   return (
-    <section className="bg-deep-navy px-5 pb-16 pt-24 md:px-10 md:pb-24 md:pt-32 lg:px-16 lg:pb-32 lg:pt-40">
+    <section className="bg-deep-navy px-5 pb-16 pt-40 md:px-10 md:pb-24 md:pt-32 lg:px-16 lg:pb-32 lg:pt-40">
       <div className="mx-auto max-w-5xl">
         {/* Large Text */}
         <h2 className="text-[7vw] font-medium leading-[1.1] tracking-[-0.02em] text-warm-white md:text-4xl lg:text-5xl">

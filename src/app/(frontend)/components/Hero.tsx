@@ -90,7 +90,7 @@ export default function HeroSection() {
               className="group relative aspect-[4/3] flex-1 overflow-hidden rounded-xl  md:aspect-auto md:h-24 md:w-32 md:flex-none md:rounded-lg xl:h-36 xl:w-44"
             >
               <Image src={boat.image} alt={boat.name} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/80 via-deep-navy/20 to-transparent" />
+              <div className="absolute -inset-px bg-gradient-to-t from-deep-navy/80 via-deep-navy/20 to-transparent" />{' '}
               <div className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-warm-white/10 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
                 <svg
                   className="h-2.5 w-2.5 text-warm-white md:h-3 md:w-3"
