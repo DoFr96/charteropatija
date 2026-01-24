@@ -1,17 +1,39 @@
 import React from 'react'
 import './styles.css'
+import localFont from 'next/font/local'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'Rent a boat in Opatija. A variety of choices.',
+  title: 'Charter Opatija',
 }
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/Satoshi-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-satoshi',
+})
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
     <html lang="en">
-      <body>
+      <body className={satoshi.variable}>
         <main>{children}</main>
       </body>
     </html>
