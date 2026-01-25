@@ -4,83 +4,15 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Users, Ruler, Gauge, ChevronLeft, ChevronRight } from 'lucide-react'
+import type { BoatCard } from '@/lib/boat-actions'
 
-const boats = [
-  {
-    id: 1,
-    name: 'Cranchi Z 35',
-    slug: 'cranchi-z-35',
-    image:
-      'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=800&auto=format&fit=crop',
-    capacity: 10,
-    length: '10.5m',
-    power: '350HP',
-  },
-  {
-    id: 2,
-    name: 'Cap Camarat 8.5',
-    slug: 'cap-camarat-85',
-    image:
-      'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop',
-    capacity: 8,
-    length: '8.5m',
-    power: '300HP',
-  },
-  {
-    id: 3,
-    name: 'Merry Fisher 795',
-    slug: 'merry-fisher-795',
-    image:
-      'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop',
-    capacity: 6,
-    length: '7.9m',
-    power: '200HP',
-  },
-  {
-    id: 4,
-    name: 'Quicksilver 755',
-    slug: 'quicksilver-755',
-    image:
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop',
-    capacity: 8,
-    length: '7.5m',
-    power: '250HP',
-  },
-  {
-    id: 5,
-    name: 'Beneteau Flyer 7.7',
-    slug: 'beneteau-flyer-77',
-    image:
-      'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=800&auto=format&fit=crop',
-    capacity: 5,
-    length: '7.7m',
-    power: '175HP',
-  },
-  {
-    id: 6,
-    name: 'Jeanneau Leader 9',
-    slug: 'jeanneau-leader-9',
-    image:
-      'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=800&auto=format&fit=crop',
-    capacity: 9,
-    length: '9.2m',
-    power: '320HP',
-  },
-  {
-    id: 7,
-    name: 'Atlantic 750 Open',
-    slug: 'atlantic-750-open',
-    image:
-      'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=800&auto=format&fit=crop',
-    capacity: 6,
-    length: '7.5m',
-    power: '200HP',
-  },
-]
+type Props = {
+  boats: BoatCard[]
+}
 
 type Filter = 'all' | 'small' | 'large'
 
-export default function FleetSection() {
+export default function FleetSection({ boats }: Props) {
   const [filter, setFilter] = useState<Filter>('all')
   const scrollRef = useRef<HTMLDivElement>(null)
   // scroll funkcionalnost
@@ -165,7 +97,10 @@ export default function FleetSection() {
       </div>
 
       {/* Horizontal Scroll Cards */}
-      <div ref={scrollRef} className="mt-12 snap-x snap-mandatory scroll-pl-5 overscroll-x-contain overflow-x-auto scrollbar-hide md:mt-16 md:snap-none">
+      <div
+        ref={scrollRef}
+        className="mt-12 snap-x snap-mandatory scroll-pl-5 overscroll-x-contain overflow-x-auto scrollbar-hide md:mt-16 md:snap-none"
+      >
         <div className="flex gap-5 px-5 pb-4 md:gap-8 md:px-10 lg:px-16">
           {' '}
           {filteredBoats.map((boat) => (
@@ -179,7 +114,7 @@ export default function FleetSection() {
 
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src={boat.image}
+                  src={boat.featuredImage.url}
                   alt={boat.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -203,7 +138,7 @@ export default function FleetSection() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Gauge className="h-4 w-4 text-sand" />
-                    <span className="text-base text-warm-white/70">{boat.power}</span>
+                    <span className="text-base text-warm-white/70">{boat.motor}</span>
                   </div>
                 </div>
 

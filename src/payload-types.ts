@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    boats: Boat;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    boats: BoatsSelect<false> | BoatsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -146,7 +148,11 @@ export interface User {
  */
 export interface Media {
   id: number;
+  /**
+   * Describe the image for accessibility
+   */
   alt: string;
+  caption?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -158,6 +164,113 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * Manage your boat fleet
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "boats".
+ */
+export interface Boat {
+  id: number;
+  name: string;
+  /**
+   * URL-friendly name (auto-generated or custom)
+   */
+  slug: string;
+  tagline?: string | null;
+  description?: string | null;
+  category: 'motorboat' | 'yacht' | 'sailboat' | 'catamaran' | 'rib';
+  status: 'available' | 'maintenance' | 'booked' | 'hidden';
+  /**
+   * Show this boat prominently on the homepage
+   */
+  featured?: boolean | null;
+  length?: string | null;
+  width?: string | null;
+  /**
+   * Maximum number of guests
+   */
+  capacity: number;
+  cabins?: string | null;
+  year?: number | null;
+  motor?: string | null;
+  maxSpeed?: string | null;
+  cruisingSpeed?: string | null;
+  fuelTank?: string | null;
+  waterTank?: string | null;
+  fuelConsumption?: string | null;
+  /**
+   * Starting price in EUR
+   */
+  priceLow: number;
+  /**
+   * Maximum price in EUR
+   */
+  priceHigh: number;
+  /**
+   * Additional pricing information
+   */
+  priceNote?: string | null;
+  /**
+   * Link to Click&Boat listing for this boat
+   */
+  clickandboatUrl?: string | null;
+  /**
+   * Main image shown in fleet listing
+   */
+  featuredImage: number | Media;
+  /**
+   * Additional images for the boat detail page
+   */
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  rating?: number | null;
+  reviewCount?: number | null;
+  /**
+   * Hand-picked reviews to display on the website
+   */
+  reviews?:
+    | {
+        text: string;
+        author: string;
+        country?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -190,6 +303,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'boats';
+        value: number | Boat;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -261,6 +378,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -272,6 +390,88 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        hero?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "boats_select".
+ */
+export interface BoatsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  tagline?: T;
+  description?: T;
+  category?: T;
+  status?: T;
+  featured?: T;
+  length?: T;
+  width?: T;
+  capacity?: T;
+  cabins?: T;
+  year?: T;
+  motor?: T;
+  maxSpeed?: T;
+  cruisingSpeed?: T;
+  fuelTank?: T;
+  waterTank?: T;
+  fuelConsumption?: T;
+  priceLow?: T;
+  priceHigh?: T;
+  priceNote?: T;
+  clickandboatUrl?: T;
+  featuredImage?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  rating?: T;
+  reviewCount?: T;
+  reviews?:
+    | T
+    | {
+        text?: T;
+        author?: T;
+        country?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
