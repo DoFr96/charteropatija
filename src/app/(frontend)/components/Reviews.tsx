@@ -63,7 +63,7 @@ export default function ReviewsSection({
   }, [isAutoPlaying, reviews.length])
 
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-warm-white">
+    <section className="py-20 md:py-28 bg-warm-white">
       <div className="px-5 md:px-10 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
           {/* Section label */}
@@ -99,7 +99,7 @@ export default function ReviewsSection({
               {/* Quote */}
               <div className="min-h-[140px] md:min-h-[120px]">
                 <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-deep-navy leading-relaxed">
-                  "{reviews[currentReview].text}"
+                  &ldquo;{reviews[currentReview].text}&rdquo;
                 </blockquote>
                 <p className="mt-4 text-deep-navy/60">
                   <span className="font-medium text-deep-navy">

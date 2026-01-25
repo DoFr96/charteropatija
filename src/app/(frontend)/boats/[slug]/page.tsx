@@ -200,7 +200,7 @@ export default function BoatDetailPage() {
             </div>
 
             {/* Desktop: 6 images (1 large left + 2x2 grid + 1 tall right) */}
-            <div className="hidden xl:flex gap-3 h-[480px]">
+            <div className="hidden lg:flex gap-3 h-[480px]">
               {/* Large left */}
               <button
                 onClick={() => openLightbox(0)}
