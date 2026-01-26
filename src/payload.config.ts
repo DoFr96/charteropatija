@@ -37,6 +37,7 @@ export default buildConfig({
       collections: {
         media: {
           disableLocalStorage: true,
+          prefix: '',
           generateFileURL: ({ filename }) => {
             return `${process.env.CLOUDFLARE_R2_PUBLIC_URL}/${filename}`
           },
