@@ -53,6 +53,16 @@ export const Media: CollectionConfig = {
       admin: {
         description: 'Describe the image for accessibility',
       },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (!value && data?.filename) {
+              return data.filename.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ')
+            }
+            return value
+          },
+        ],
+      },
     },
     {
       name: 'caption',

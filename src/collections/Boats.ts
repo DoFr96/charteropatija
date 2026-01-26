@@ -313,28 +313,12 @@ export const Boats: CollectionConfig = {
             },
             {
               name: 'gallery',
-              type: 'array',
-              label: 'Gallery Images',
-              minRows: 0,
-              maxRows: 20,
+              type: 'upload',
+              relationTo: 'media',
+              hasMany: true,
               admin: {
-                description: 'Additional images for the boat detail page',
+                description: 'Select multiple images',
               },
-              fields: [
-                {
-                  name: 'image',
-                  type: 'upload',
-                  relationTo: 'media',
-                  required: true,
-                },
-                {
-                  name: 'caption',
-                  type: 'text',
-                  admin: {
-                    placeholder: 'Optional caption',
-                  },
-                },
-              ],
             },
           ],
         },

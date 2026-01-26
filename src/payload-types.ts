@@ -248,15 +248,9 @@ export interface Boat {
    */
   featuredImage: number | Media;
   /**
-   * Additional images for the boat detail page
+   * Select multiple images
    */
-  gallery?:
-    | {
-        image: number | Media;
-        caption?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  gallery?: (number | Media)[] | null;
   rating?: number | null;
   reviewCount?: number | null;
   /**
@@ -455,13 +449,7 @@ export interface BoatsSelect<T extends boolean = true> {
   priceNote?: T;
   clickandboatUrl?: T;
   featuredImage?: T;
-  gallery?:
-    | T
-    | {
-        image?: T;
-        caption?: T;
-        id?: T;
-      };
+  gallery?: T;
   rating?: T;
   reviewCount?: T;
   reviews?:

@@ -53,11 +53,8 @@ export type BoatFull = {
     alt: string
   }
   gallery: Array<{
-    image: {
-      url: string
-      alt: string
-    }
-    caption?: string
+    url: string
+    alt: string
   }> | null
   // Reviews
   rating: number | null
@@ -153,9 +150,9 @@ export function getAllBoatImages(boat: BoatFull): string[] {
   }
 
   if (boat.gallery) {
-    boat.gallery.forEach((item) => {
-      if (item.image?.url) {
-        images.push(item.image.url)
+    boat.gallery.forEach((image) => {
+      if (image?.url) {
+        images.push(image.url)
       }
     })
   }
