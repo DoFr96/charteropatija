@@ -15,6 +15,7 @@ export type BoatCard = {
   length: string | null
   motor: string | null
   priceLow: number
+  year: string
   featuredImage: {
     url: string
     alt: string
@@ -86,9 +87,10 @@ export async function getBoatsForFleet(): Promise<BoatCard[]> {
       length: true,
       motor: true,
       priceLow: true,
+      year: true,
       featuredImage: true,
     },
-    sort: '-featured,-createdAt',
+    sort: 'priceLow',
     limit: 20,
     depth: 1,
   })

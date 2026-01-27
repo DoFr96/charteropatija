@@ -249,9 +249,45 @@ export const Boats: CollectionConfig = {
         },
 
         // ==================== PRICING ====================
+        // ==================== PRICING ====================
         {
           label: 'Pricing',
           fields: [
+            {
+              name: 'priceNote',
+              type: 'text',
+              admin: {
+                placeholder: 'e.g. Fuel not included',
+                description: 'General pricing note',
+              },
+            },
+            // Half Day
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'priceHalfDayLow',
+                  type: 'number',
+                  min: 0,
+                  admin: {
+                    placeholder: '600',
+                    width: '50%',
+                    description: 'Half day (4h) - from €',
+                  },
+                },
+                {
+                  name: 'priceHalfDayHigh',
+                  type: 'number',
+                  min: 0,
+                  admin: {
+                    placeholder: '800',
+                    width: '50%',
+                    description: 'Half day (4h) - to €',
+                  },
+                },
+              ],
+            },
+            // Full Day
             {
               type: 'row',
               fields: [
@@ -263,7 +299,7 @@ export const Boats: CollectionConfig = {
                   admin: {
                     placeholder: '1200',
                     width: '50%',
-                    description: 'Starting price in EUR',
+                    description: 'Full day (8h) - from €',
                   },
                 },
                 {
@@ -274,30 +310,39 @@ export const Boats: CollectionConfig = {
                   admin: {
                     placeholder: '1600',
                     width: '50%',
-                    description: 'Maximum price in EUR',
+                    description: 'Full day (8h) - to €',
                   },
                 },
               ],
             },
+            // Weekly
             {
-              name: 'priceNote',
-              type: 'text',
-              admin: {
-                placeholder: 'Full day with skipper (09:00 - 18:00)',
-                description: 'Additional pricing information',
-              },
-            },
-            {
-              name: 'clickandboatUrl',
-              type: 'text',
-              admin: {
-                placeholder: 'https://www.clickandboat.com/...',
-                description: 'Link to Click&Boat listing for this boat',
-              },
+              type: 'row',
+              fields: [
+                {
+                  name: 'priceWeeklyLow',
+                  type: 'number',
+                  min: 0,
+                  admin: {
+                    placeholder: '6000',
+                    width: '50%',
+                    description: 'Weekly (7 days) - from €',
+                  },
+                },
+                {
+                  name: 'priceWeeklyHigh',
+                  type: 'number',
+                  min: 0,
+                  admin: {
+                    placeholder: '9000',
+                    width: '50%',
+                    description: 'Weekly (7 days) - to €',
+                  },
+                },
+              ],
             },
           ],
         },
-
         // ==================== MEDIA ====================
         {
           label: 'Media',

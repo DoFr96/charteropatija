@@ -228,21 +228,33 @@ export interface Boat {
   waterTank?: string | null;
   fuelConsumption?: string | null;
   /**
-   * Starting price in EUR
-   */
-  priceLow: number;
-  /**
-   * Maximum price in EUR
-   */
-  priceHigh: number;
-  /**
-   * Additional pricing information
+   * General pricing note
    */
   priceNote?: string | null;
   /**
-   * Link to Click&Boat listing for this boat
+   * Half day (4h) - from €
    */
-  clickandboatUrl?: string | null;
+  priceHalfDayLow?: number | null;
+  /**
+   * Half day (4h) - to €
+   */
+  priceHalfDayHigh?: number | null;
+  /**
+   * Full day (8h) - from €
+   */
+  priceLow: number;
+  /**
+   * Full day (8h) - to €
+   */
+  priceHigh: number;
+  /**
+   * Weekly (7 days) - from €
+   */
+  priceWeeklyLow?: number | null;
+  /**
+   * Weekly (7 days) - to €
+   */
+  priceWeeklyHigh?: number | null;
   /**
    * Main image shown in fleet listing
    */
@@ -444,10 +456,13 @@ export interface BoatsSelect<T extends boolean = true> {
   fuelTank?: T;
   waterTank?: T;
   fuelConsumption?: T;
+  priceNote?: T;
+  priceHalfDayLow?: T;
+  priceHalfDayHigh?: T;
   priceLow?: T;
   priceHigh?: T;
-  priceNote?: T;
-  clickandboatUrl?: T;
+  priceWeeklyLow?: T;
+  priceWeeklyHigh?: T;
   featuredImage?: T;
   gallery?: T;
   rating?: T;

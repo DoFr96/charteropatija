@@ -4,20 +4,17 @@ const featuredBoats = [
   {
     id: 1,
     name: 'Cap Camarat 8.5',
-    image:
-      'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=500&auto=format&fit=crop',
+    image: '/images/camaratthumbnailhero.jpg',
   },
   {
     id: 2,
     name: 'Merry Fisher 795',
-    image:
-      'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=500&auto=format&fit=crop',
+    image: '/images/fisherthumbnailhero.JPG',
   },
   {
     id: 3,
-    name: 'Cranchi Z 35',
-    image:
-      'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=500&auto=format&fit=crop',
+    name: '2 bar',
+    image: '/images/2barthumbnailhero.jpg',
   },
 ]
 

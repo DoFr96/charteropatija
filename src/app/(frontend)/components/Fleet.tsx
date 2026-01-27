@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Users, Ruler, Gauge, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Users, Ruler, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { BoatCard } from '@/lib/boat-actions'
 
 type Props = {
@@ -119,7 +119,12 @@ export default function FleetSection({ boats }: Props) {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {/* 
+                  
+                  
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/60 to-transparent" />
+                  
+                  */}
               </div>
 
               {/* Content */}
@@ -137,8 +142,8 @@ export default function FleetSection({ boats }: Props) {
                     <span className="text-base text-warm-white/70">{boat.length}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Gauge className="h-4 w-4 text-sand" />
-                    <span className="text-base text-warm-white/70">{boat.motor}</span>
+                    <Calendar className="h-4 w-4 text-sand" />
+                    <span className="text-base text-warm-white/70">{boat.year}</span>
                   </div>
                 </div>
 

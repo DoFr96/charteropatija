@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, TouchEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -26,6 +26,29 @@ export default function BoatPage({ boat, images }: Props) {
   const [currentImage, setCurrentImage] = useState(0)
   const [showFullDescription, setShowFullDescription] = useState(false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  // Touch swipe
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextImage()
+      } else {
+        prevImage()
+      }
+    }
+  }
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length)
@@ -61,7 +84,12 @@ export default function BoatPage({ boat, images }: Props) {
       <section className="pt-16">
         {/* Mobile Gallery */}
         <div className="lg:hidden">
-          <div className="relative aspect-[4/3]">
+          <div
+            className="relative aspect-[4/3]"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <Image
               src={images[currentImage]}
               alt={`${boat.name} - Image ${currentImage + 1}`}
@@ -291,6 +319,11 @@ export default function BoatPage({ boat, images }: Props) {
               <p className="text-xs text-warm-white/50">Length</p>
             </div>
             <div className="p-4 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
+              <Anchor className="w-5 h-5 text-sand mx-auto" />
+              <p className="mt-2 text-lg font-semibold text-warm-white">{boat.width || '-'}</p>
+              <p className="text-xs text-warm-white/50">Width</p>
+            </div>
+            <div className="p-4 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
               <Gauge className="w-5 h-5 text-sand mx-auto" />
               <p className="mt-2 text-lg font-semibold text-warm-white">{boat.maxSpeed || '-'}</p>
               <p className="text-xs text-warm-white/50">Max Speed</p>
@@ -300,11 +333,7 @@ export default function BoatPage({ boat, images }: Props) {
               <p className="mt-2 text-lg font-semibold text-warm-white">{boat.fuelTank || '-'}</p>
               <p className="text-xs text-warm-white/50">Fuel Tank</p>
             </div>
-            <div className="p-4 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
-              <Anchor className="w-5 h-5 text-sand mx-auto" />
-              <p className="mt-2 text-lg font-semibold text-warm-white">{boat.cabins || '-'}</p>
-              <p className="text-xs text-warm-white/50">Cabins</p>
-            </div>
+
             <div className="p-4 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
               <Calendar className="w-5 h-5 text-sand mx-auto" />
               <p className="mt-2 text-lg font-semibold text-warm-white">{boat.year || '-'}</p>
@@ -316,26 +345,9 @@ export default function BoatPage({ boat, images }: Props) {
           {boat.description && (
             <div className="mt-10">
               <h2 className="text-xl font-semibold text-warm-white">About this boat</h2>
-              <div
-                className={`mt-4 text-warm-white/70 leading-relaxed ${!showFullDescription && 'line-clamp-3'}`}
-              >
-                {boat.description.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="mb-4">
-                    {paragraph}
-                  </p>
-                ))}
+              <div className={`mt-4 text-warm-white/70 leading-relaxed `}>
+                <p>{boat.description}</p>
               </div>
-              <button
-                onClick={() => setShowFullDescription(!showFullDescription)}
-                className="mt-2 flex items-center gap-1 text-sand hover:text-sand/80 transition"
-              >
-                <span className="text-sm font-medium">
-                  {showFullDescription ? 'Show less' : 'Read more'}
-                </span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${showFullDescription && 'rotate-180'}`}
-                />
-              </button>
             </div>
           )}
 
@@ -414,7 +426,12 @@ export default function BoatPage({ boat, images }: Props) {
 
       {/* Lightbox */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-50 bg-deep-navy/95 flex items-center justify-center">
+        <div
+          className="fixed inset-0 z-50 bg-deep-navy/95 flex items-center justify-center"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <button
             onClick={() => setLightboxOpen(false)}
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-warm-white/10 flex items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
