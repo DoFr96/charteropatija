@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { X, Phone, MessageCircle } from 'lucide-react'
 
-const PHONE_NUMBER = '+385911234567' // Zamijeni s pravim brojem
+const PHONE_NUMBER = '+385911507107'
 const WHATSAPP_MESSAGE = "Hi! I'm interested in booking a boat charter." // Opcijski default message
 
 export default function FloatingContact() {

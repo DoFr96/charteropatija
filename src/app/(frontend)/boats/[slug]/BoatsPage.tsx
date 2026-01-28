@@ -100,20 +100,6 @@ export default function BoatPage({ boat, images }: Props) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-deep-navy via-transparent to-deep-navy/30" />
 
-            {/* Gallery Navigation */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-deep-navy/50 backdrop-blur-sm flex items-center justify-center text-warm-white hover:bg-deep-navy/70 transition"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-deep-navy/50 backdrop-blur-sm flex items-center justify-center text-warm-white hover:bg-deep-navy/70 transition"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
             {/* Image Counter */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
               {images.map((_, idx) => (
@@ -295,14 +281,75 @@ export default function BoatPage({ boat, images }: Props) {
               {boat.tagline && <p className="mt-2 text-warm-white/60">{boat.tagline}</p>}
             </div>
 
-            <div className="flex-shrink-0 p-5 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-              {boat.priceNote && <p className="text-sm text-warm-white/60">{boat.priceNote}</p>}
-              <p className="mt-1 text-2xl font-semibold text-sand">
-                €{boat.priceLow.toLocaleString()} - €{boat.priceHigh.toLocaleString()}
-              </p>
-              <button className="mt-4 w-full py-3 px-6 rounded-full bg-sand text-deep-navy font-medium hover:bg-sand/90 transition">
-                Book Now
-              </button>
+            <div className="flex-shrink-0">
+              <div className="flex gap-3">
+                {/* Main Price - Full Day */}
+                <div className="flex-1 md:flex-initial p-5 md:p-6 rounded-2xl bg-warm-white/5 border border-warm-white/10 text-center md:text-left">
+                  <p className="text-sm md:text-base text-warm-white/60">Full Day (8h)</p>
+                  <p className="mt-1 text-2xl md:text-3xl font-semibold text-sand">
+                    €{boat.priceLow.toLocaleString()} - €{boat.priceHigh.toLocaleString()}
+                  </p>
+                  {boat.priceNote && (
+                    <p className="mt-2 text-xs text-warm-white/50">{boat.priceNote}</p>
+                  )}
+                  <a
+                    href={`https://wa.me/385911507107?text=${encodeURIComponent(`Hi, I would like to book "${boat.name}"`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 block w-full py-3 px-6 md:py-3.5 md:px-8 rounded-full bg-sand text-deep-navy font-medium hover:bg-sand/90 transition text-center"
+                  >
+                    Book Now
+                  </a>
+                </div>
+
+                {/* Half Day & Weekly - side on desktop only */}
+                {(boat.priceHalfDayLow || boat.priceWeeklyLow) && (
+                  <div className="hidden md:flex flex-col gap-3">
+                    {boat.priceHalfDayLow && (
+                      <div className="p-3 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center flex-1 flex flex-col justify-center">
+                        <p className="text-xs text-warm-white/50">Half Day (4h)</p>
+                        <p className="mt-1 text-sm font-semibold text-warm-white">
+                          €{boat.priceHalfDayLow.toLocaleString()}
+                          {boat.priceHalfDayHigh && ` - €${boat.priceHalfDayHigh.toLocaleString()}`}
+                        </p>
+                      </div>
+                    )}
+                    {boat.priceWeeklyLow && (
+                      <div className="p-3 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center flex-1 flex flex-col justify-center">
+                        <p className="text-xs text-warm-white/50">Weekly (7d)</p>
+                        <p className="mt-1 text-sm font-semibold text-warm-white">
+                          €{boat.priceWeeklyLow.toLocaleString()}
+                          {boat.priceWeeklyHigh && ` - €${boat.priceWeeklyHigh.toLocaleString()}`}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Half Day & Weekly - below on mobile only */}
+              {(boat.priceHalfDayLow || boat.priceWeeklyLow) && (
+                <div className="mt-3 grid grid-cols-2 gap-3 md:hidden">
+                  {boat.priceHalfDayLow && (
+                    <div className="p-3 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
+                      <p className="text-xs text-warm-white/50">Half Day (4h)</p>
+                      <p className="mt-1 text-sm font-semibold text-warm-white">
+                        €{boat.priceHalfDayLow.toLocaleString()}
+                        {boat.priceHalfDayHigh && ` - €${boat.priceHalfDayHigh.toLocaleString()}`}
+                      </p>
+                    </div>
+                  )}
+                  {boat.priceWeeklyLow && (
+                    <div className="p-3 rounded-xl bg-warm-white/5 border border-warm-white/10 text-center">
+                      <p className="text-xs text-warm-white/50">Weekly (7d)</p>
+                      <p className="mt-1 text-sm font-semibold text-warm-white">
+                        €{boat.priceWeeklyLow.toLocaleString()}
+                        {boat.priceWeeklyHigh && ` - €${boat.priceWeeklyHigh.toLocaleString()}`}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

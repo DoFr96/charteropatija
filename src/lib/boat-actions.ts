@@ -48,6 +48,10 @@ export type BoatFull = {
   priceHigh: number
   priceNote: string | null
   clickandboatUrl: string | null
+  priceHalfDayLow: number | null
+  priceHalfDayHigh: number | null
+  priceWeeklyLow: number | null
+  priceWeeklyHigh: number | null
   // Media
   featuredImage: {
     url: string

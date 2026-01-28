@@ -45,54 +45,56 @@ export default function FleetSection({ boats }: Props) {
         <p className="mt-4 text-warm-white/50 md:mt-6 md:text-lg pl-1">
           Choose your perfect vessel
         </p>
-        {/* Navigation Arrows - desktop only */}
-        <div className="hidden md:flex gap-2 mt-6">
-          <button
-            onClick={() => scroll('left')}
-            className="w-12 h-12 rounded-full border border-warm-white/20 flex items-center justify-center hover:border-warm-white/40 transition"
-          >
-            <ChevronLeft className="w-5 h-5 text-warm-white" />
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="w-12 h-12 rounded-full border border-warm-white/20 flex items-center justify-center hover:border-warm-white/40 transition"
-          >
-            <ChevronRight className="w-5 h-5 text-warm-white" />
-          </button>
-        </div>
+        {/* Filter Buttons & Navigation Arrows */}
+        <div className="mt-10 flex items-center justify-between md:mt-12">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setFilter('all')}
+              className={`whitespace-nowrap rounded-full px-3 py-2 text-xs font-medium md:px-5 md:py-2.5 md:text-sm  ${
+                filter === 'all'
+                  ? 'bg-sand text-deep-navy'
+                  : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
+              }`}
+            >
+              All boats
+            </button>
+            <button
+              onClick={() => setFilter('small')}
+              className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
+                filter === 'small'
+                  ? 'bg-sand text-deep-navy'
+                  : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
+              }`}
+            >
+              Up to 7 guests
+            </button>
+            <button
+              onClick={() => setFilter('large')}
+              className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
+                filter === 'large'
+                  ? 'bg-sand text-deep-navy'
+                  : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
+              }`}
+            >
+              7+ guests
+            </button>
+          </div>
 
-        {/* Filter Buttons */}
-        <div className="mt-10 flex gap-2 md:mt-12">
-          <button
-            onClick={() => setFilter('all')}
-            className={`whitespace-nowrap rounded-full px-3 py-2 text-xs font-medium md:px-5 md:py-2.5 md:text-sm  ${
-              filter === 'all'
-                ? 'bg-sand text-deep-navy'
-                : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
-            }`}
-          >
-            All boats
-          </button>
-          <button
-            onClick={() => setFilter('small')}
-            className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
-              filter === 'small'
-                ? 'bg-sand text-deep-navy'
-                : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
-            }`}
-          >
-            Up to 7 guests
-          </button>
-          <button
-            onClick={() => setFilter('large')}
-            className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
-              filter === 'large'
-                ? 'bg-sand text-deep-navy'
-                : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
-            }`}
-          >
-            7+ guests
-          </button>
+          {/* Navigation Arrows - desktop only */}
+          <div className="hidden md:flex gap-2">
+            <button
+              onClick={() => scroll('left')}
+              className="w-12 h-12 rounded-full border border-warm-white/20 flex items-center justify-center hover:border-warm-white/40 transition"
+            >
+              <ChevronLeft className="w-5 h-5 text-warm-white" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-12 h-12 rounded-full border border-warm-white/20 flex items-center justify-center hover:border-warm-white/40 transition"
+            >
+              <ChevronRight className="w-5 h-5 text-warm-white" />
+            </button>
+          </div>
         </div>
       </div>
 

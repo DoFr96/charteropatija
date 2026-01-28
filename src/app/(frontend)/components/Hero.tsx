@@ -3,17 +3,17 @@ import Image from 'next/image'
 const featuredBoats = [
   {
     id: 1,
-    name: 'Cap Camarat 8.5',
+    name: 'Cap Camarat',
     image: '/images/camaratthumbnailhero.jpg',
   },
   {
     id: 2,
-    name: 'Merry Fisher 795',
+    name: 'Merry Fisher',
     image: '/images/fisherthumbnailhero.JPG',
   },
   {
     id: 3,
-    name: '2 bar',
+    name: '2BAR',
     image: '/images/2barthumbnailhero.jpg',
   },
 ]
@@ -58,7 +58,8 @@ export default function HeroSection() {
         </h1>
 
         <p className="mt-3 max-w-[280px] text-sm leading-relaxed text-warm-white/60 md:mt-5 md:max-w-md md:text-base">
-          Premium boat charter. Explore hidden coves of Mošćenička Draga, Brseč and beyond.
+          Your gateway to the Adriatic. Discover Cres, Krk, Crikvenica and the stunning Kvarner
+          coastline.
         </p>
 
         {/* Boat Thumbnails - inline on mobile, absolute on desktop */}
@@ -69,18 +70,7 @@ export default function HeroSection() {
               className="group relative aspect-[4/3] flex-1 overflow-hidden rounded-xl  md:aspect-auto md:h-24 md:w-32 md:flex-none md:rounded-lg xl:h-36 xl:w-44"
             >
               <Image src={boat.image} alt={boat.name} fill className="object-cover" />
-              <div className="absolute -inset-px bg-gradient-to-t from-deep-navy/80 via-deep-navy/20 to-transparent" />{' '}
-              <div className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-warm-white/10 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
-                <svg
-                  className="h-2.5 w-2.5 text-warm-white md:h-3 md:w-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+              <div className="absolute -inset-px bg-gradient-to-t from-deep-navy/80 via-deep-navy/20 to-transparent" />
               <div className="absolute bottom-2 left-2 right-2 md:right-auto">
                 <span className="text-xs font-medium text-warm-white">{boat.name}</span>
               </div>

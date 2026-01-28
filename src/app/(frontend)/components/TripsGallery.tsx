@@ -7,48 +7,42 @@ const destinations = [
     id: 1,
     name: 'Lubenice',
     location: 'Cres Island',
-    image:
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop',
+    image: '/images/lubeniceplaza.jpg',
     size: 'large',
   },
   {
     id: 2,
     name: 'Valun',
     location: 'Cres Island',
-    image:
-      'https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop',
+    image: '/images/valunplaza.jpeg',
     size: 'medium',
   },
   {
     id: 3,
     name: 'Baška',
     location: 'Krk Island',
-    image:
-      'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?q=80&w=800&auto=format&fit=crop',
+    image: '/images/baskaplaza.jpg',
     size: 'medium',
   },
   {
     id: 4,
     name: 'Rabac',
     location: 'Istria',
-    image:
-      'https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=800&auto=format&fit=crop',
+    image: '/images/rabacplaza.jpg',
     size: 'small',
   },
   {
     id: 5,
-    name: 'Mošćenička Draga',
-    location: 'Opatija Riviera',
-    image:
-      'https://images.unsplash.com/photo-1468413253725-0d5181091126?q=80&w=800&auto=format&fit=crop',
+    name: 'Crikvenica',
+    location: 'Vinodol Coast',
+    image: '/images/crikvenicaplaza.jpg',
     size: 'small',
   },
   {
     id: 6,
-    name: 'Crikvenica',
-    location: 'Vinodol Coast',
-    image:
-      'https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?q=80&w=800&auto=format&fit=crop',
+    name: 'Mošćenička Draga',
+    location: 'Opatija Riviera',
+    image: '/images/moscenickadragaplaza.jpg',
     size: 'large',
   },
   {
