@@ -21,7 +21,7 @@ export default function Navbar() {
       <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 pt-4 md:px-10 md:pt-6 lg:px-16">
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold tracking-tight text-warm-white md:text-base">
-            Kvarner
+            ALL IN ONE
           </span>
           <span className="text-sm font-light text-warm-white/60 md:text-base">Charter</span>
         </div>

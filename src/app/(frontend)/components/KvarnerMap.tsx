@@ -96,6 +96,27 @@ const destinations = [
     highlights: ['Frankopan tower', 'Wine tradition', 'Family beaches'],
     time: '55 min',
   },
+  {
+    name: 'Beli',
+    position: { lat: 45.1102, lng: 14.3552 },
+    time: '45 min',
+    description: 'Ancient hilltop village with griffon vulture sanctuary and pristine beaches.',
+    highlights: ['Griffon vultures', 'Medieval village', 'Secluded coves'],
+  },
+  {
+    name: 'Dragozetići',
+    position: { lat: 45.083, lng: 14.3 },
+    time: '40 min',
+    description: 'Secluded pebble beach accessible only by boat – pure untouched nature.',
+    highlights: ['Boat-only access', 'Crystal clear water', 'Cliff jumping'],
+  },
+  {
+    name: 'Porozina',
+    position: { lat: 45.1316, lng: 14.2878 },
+    time: '35 min',
+    description: 'Quiet port village with crystal-clear waters perfect for swimming.',
+    highlights: ['Ferry port', 'Calm waters', 'Local tavern'],
+  },
 ]
 
 // Lighter dark map style

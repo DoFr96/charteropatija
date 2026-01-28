@@ -14,6 +14,11 @@ import {
   Calendar,
   ChevronDown,
   X,
+  Info,
+  CreditCard,
+  BadgeCheck,
+  Ship,
+  GraduationCap,
 } from 'lucide-react'
 import type { BoatFull } from '@/lib/boat-actions'
 
@@ -38,6 +43,18 @@ export default function BoatPage({ boat, images }: Props) {
       img.src = src
     })
   }, [images])
+
+  // Lock scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [lightboxOpen])
 
   const handleTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX
@@ -83,44 +100,36 @@ export default function BoatPage({ boat, images }: Props) {
           <span className="text-sm font-medium">Back</span>
         </Link>
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-warm-white">Kvarner</span>
+          <span className="text-sm font-semibold text-warm-white">ALL IN ONE</span>
           <span className="text-sm font-light text-warm-white/60">Charter</span>
         </div>
       </header>
 
       {/* Gallery */}
-      <section className="pt-16">
-        {/* Mobile Gallery */}
+      <section className="pt-[52px] lg:pt-16">
+        {/* Mobile Gallery - Cover Image */}
         <div className="lg:hidden">
-          <div
-            className="relative aspect-[4/3]"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+          <button
+            onClick={() => {
+              setCurrentImage(0)
+              setLightboxOpen(true)
+            }}
+            className="relative w-full aspect-[4/3]"
           >
             <Image
-              src={images[currentImage]}
-              alt={`${boat.name} - Image ${currentImage + 1}`}
+              src={images[0]}
+              alt={`${boat.name}`}
               fill
-              className="object-cover cursor-pointer"
-              onClick={() => setLightboxOpen(true)}
+              className="object-cover"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-deep-navy via-transparent to-deep-navy/30" />
 
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImage(idx)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    idx === currentImage ? 'bg-sand w-6' : 'bg-warm-white/40 hover:bg-warm-white/60'
-                  }`}
-                />
-              ))}
+            {/* Tap to view indicator */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-deep-navy/60 backdrop-blur-sm">
+              <span className="text-xs text-warm-white/80">{images.length} photos</span>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Tablet/Desktop Bento Gallery */}
@@ -400,11 +409,66 @@ export default function BoatPage({ boat, images }: Props) {
           {boat.description && (
             <div className="mt-10">
               <h2 className="text-xl font-semibold text-warm-white">About this boat</h2>
-              <div className={`mt-4 text-warm-white/70 leading-relaxed `}>
+              <div className="mt-4 text-warm-white/70 leading-relaxed">
                 <p>{boat.description}</p>
               </div>
             </div>
           )}
+
+          {/* Rental Info */}
+          <div className="mt-10 p-5 md:p-6 rounded-2xl bg-warm-white/[0.02] border border-warm-white/10">
+            <div className="flex items-center gap-2 mb-5">
+              <Info className="w-4 h-4 text-sand" />
+              <h3 className="text-sm font-medium text-warm-white/80">Good to know</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-sand/10 flex items-center justify-center">
+                  <Fuel className="w-4 h-4 text-sand/70" />
+                </div>
+                <div>
+                  <p className="text-sm text-warm-white">Fuel not included</p>
+                  <p className="text-xs text-warm-white/50">Paid separately</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-sand/10 flex items-center justify-center">
+                  <BadgeCheck className="w-4 h-4 text-sand/70" />
+                </div>
+                <div>
+                  <p className="text-sm text-warm-white">License required</p>
+                  <p className="text-xs text-warm-white/50">Valid boat license needed</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-sand/10 flex items-center justify-center">
+                  <Ship className="w-4 h-4 text-sand/70" />
+                </div>
+                <div>
+                  <p className="text-sm text-warm-white">Skipper available</p>
+                  <p className="text-xs text-warm-white/50">Additional fee applies</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-sand/10 flex items-center justify-center">
+                  <CreditCard className="w-4 h-4 text-sand/70" />
+                </div>
+                <div>
+                  <p className="text-sm text-warm-white">Cash & card</p>
+                  <p className="text-xs text-warm-white/50">Both accepted</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-sand/10 flex items-center justify-center">
+                  <GraduationCap className="w-4 h-4 text-sand/70" />
+                </div>
+                <div>
+                  <p className="text-sm text-warm-white">Skipper training</p>
+                  <p className="text-xs text-warm-white/50">Learn to navigate</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Full Specs */}
           <div className="mt-10">
@@ -482,42 +546,59 @@ export default function BoatPage({ boat, images }: Props) {
       {/* Lightbox */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-deep-navy/95 flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-deep-navy flex flex-col"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <button
-            onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-warm-white/10 flex items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Image counter */}
-          <div className="absolute top-4 left-4 text-warm-white/70 text-sm">
-            {currentImage + 1} / {images.length}
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-deep-navy">
+            <span className="text-warm-white/70 text-sm">
+              {currentImage + 1} / {images.length}
+            </span>
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="w-9 h-9 rounded-full bg-warm-white/10 flex items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <button
-            onClick={prevImage}
-            className="absolute left-4 w-10 h-10 rounded-full bg-warm-white/10 flex items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 w-10 h-10 rounded-full bg-warm-white/10 flex items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-          <div className="relative w-full max-w-5xl aspect-[16/9] mx-4">
+          {/* Image */}
+          <div className="flex-1 flex items-center justify-center relative">
             <Image
               src={images[currentImage]}
               alt={`${boat.name} - Image ${currentImage + 1}`}
               fill
               className="object-contain"
             />
+
+            {/* Desktop nav buttons */}
+            <button
+              onClick={prevImage}
+              className="hidden md:flex absolute left-4 w-10 h-10 rounded-full bg-warm-white/10 items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="hidden md:flex absolute right-4 w-10 h-10 rounded-full bg-warm-white/10 items-center justify-center text-warm-white hover:bg-warm-white/20 transition"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Dots indicator - mobile */}
+          <div className="md:hidden flex justify-center gap-1.5 py-4 bg-deep-navy">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentImage(idx)}
+                className={`h-1.5 rounded-full transition-all ${
+                  idx === currentImage ? 'bg-sand w-6' : 'bg-warm-white/30 w-1.5'
+                }`}
+              />
+            ))}
           </div>
         </div>
       )}

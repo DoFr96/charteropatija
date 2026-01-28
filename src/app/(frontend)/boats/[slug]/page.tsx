@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
   if (!boat) return { title: 'Boat Not Found' }
 
   return {
-    title: `${boat.name} | Kvarner Charter`,
+    title: `${boat.name} | All In One Charter`,
     description: boat.tagline || `Charter ${boat.name} in Opatija, Croatia`,
   }
 }

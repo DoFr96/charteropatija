@@ -7,6 +7,7 @@ import './styles.css'
 import TripsGallery from './components/TripsGallery'
 import ReviewsSection from './components/Reviews'
 import { getBoatsForFleet } from '@/lib/boat-actions'
+import OfficeSection from './components/Office'
 
 export const dynamic = 'force-static'
 export default async function HomePage() {
@@ -19,6 +20,7 @@ export default async function HomePage() {
       <FleetSection boats={boats} />
       <KvarnerMap />
       <TripsGallery />
+      <OfficeSection />
       <ReviewsSection />
     </section>
   )
