@@ -76,7 +76,7 @@ export default function BoatPage({ boat, images }: Props) {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-4 bg-deep-navy/80 backdrop-blur-md md:px-10 lg:px-16">
         <Link
-          href="/"
+          href="/#fleet"
           className="flex items-center gap-2 text-warm-white hover:text-sand transition-colors"
         >
           <ChevronLeft className="w-5 h-5" />
