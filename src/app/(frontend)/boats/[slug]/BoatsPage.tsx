@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, TouchEvent } from 'react'
+import { useState, useRef, TouchEvent, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -30,6 +30,14 @@ export default function BoatPage({ boat, images }: Props) {
   // Touch swipe
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
+
+  // Preload all images in background
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new window.Image()
+      img.src = src
+    })
+  }, [images])
 
   const handleTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX
