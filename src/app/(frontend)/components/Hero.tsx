@@ -25,7 +25,7 @@ export default function HeroSection() {
       <div className="absolute inset-x-0 top-0 h-[90%] md:h-full">
         {/* Mobile image */}
         <Image
-          src="/images/chartermobile1.png"
+          src="/images/IMG_4865.jpg"
           alt="Cranchi Z 35 cruising on Adriatic"
           fill
           className="object-cover md:hidden"
@@ -33,15 +33,15 @@ export default function HeroSection() {
         />
         {/* Desktop image */}
         <Image
-          src="/images/cranchicover1.png"
+          src="/images/IMG_4865.jpg"
           alt="Cranchi Z 35 cruising on Adriatic"
           fill
           className="hidden object-cover md:block"
           priority
         />
         {/* Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-deep-navy via-deep-navy/20 to-deep-navy/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-navy/50 via-transparent to-transparent md:from-deep-navy/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/70 via-deep-navy/10 to-deep-navy/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-navy/40 via-transparent to-transparent md:from-deep-navy/50" />
       </div>
 
       {/* Main Content */}
