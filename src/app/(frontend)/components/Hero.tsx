@@ -44,20 +44,33 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-deep-navy/40 via-transparent to-transparent md:from-deep-navy/50" />
       </div>
 
-      {/* Main Content */}
-      <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 md:px-10 md:pb-10 lg:px-16 lg:pb-14">
-        {/* Text Content */}
-        <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-sand md:mb-3 md:text-sm">
+      {/* Title Content - Top on mobile only */}
+      <div className="absolute inset-x-0 top-28 z-10 px-5 md:hidden">
+        <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-sand">
           Opatija • Kvarner Bay
         </span>
 
-        <h1 className="text-[11vw] font-semibold leading-[0.95] tracking-[-0.02em] text-warm-white md:text-6xl lg:text-7xl">
+        <h1 className="text-[11vw] font-semibold leading-[0.95] tracking-[-0.02em] text-warm-white">
+          Your Adriatic
+          <br />
+          <span className="text-sand">Adventure</span>
+        </h1>
+      </div>
+
+      {/* Main Content */}
+      <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 md:px-10 md:pb-10 lg:px-16 lg:pb-14">
+        {/* Text Content - Desktop only */}
+        <span className="mb-3 hidden text-sm font-medium uppercase tracking-[0.2em] text-sand md:block">
+          Opatija • Kvarner Bay
+        </span>
+
+        <h1 className="hidden font-semibold leading-[0.95] tracking-[-0.02em] text-warm-white md:block md:text-6xl lg:text-7xl">
           Your Adriatic
           <br />
           <span className="text-sand">Adventure</span>
         </h1>
 
-        <p className="mt-3 max-w-[280px] text-sm leading-relaxed text-warm-white/60 md:mt-5 md:max-w-md md:text-base">
+        <p className="max-w-[280px] text-sm leading-relaxed text-warm-white/60 md:mt-5 md:max-w-md md:text-base">
           Your gateway to the Adriatic. Discover Cres, Krk, Crikvenica and the stunning Kvarner
           coastline.
         </p>

@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { X, Phone, MessageCircle } from 'lucide-react'
+import { X, Phone, MessageCircle, Mail } from 'lucide-react'
 
 const PHONE_NUMBER = '+385911507107'
 const WHATSAPP_MESSAGE = "Hi! I'm interested in booking a boat charter." // Opcijski default message
+const EMAIL_ADDRESS = 'charter.icici@outlook.com'
 
 export default function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false)
 
   const phoneLink = `tel:${PHONE_NUMBER}`
   const whatsappLink = `https://wa.me/${PHONE_NUMBER.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+  const emailLink = `mailto:${EMAIL_ADDRESS}`
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
@@ -42,6 +44,16 @@ export default function FloatingContact() {
           </span>
           <div className="w-12 h-12 rounded-full bg-sand flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
             <Phone className="w-5 h-5 text-deep-navy" />
+          </div>
+        </a>
+
+        {/* Email */}
+        <a href={emailLink} className="group flex items-center gap-3">
+          <span className="px-3 py-1.5 rounded-lg bg-deep-navy text-warm-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Email
+          </span>
+          <div className="w-12 h-12 rounded-full bg-[#0078D4] flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+            <Mail className="w-5 h-5 text-white" />
           </div>
         </a>
       </div>
