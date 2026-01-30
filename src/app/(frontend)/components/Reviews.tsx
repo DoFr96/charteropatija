@@ -6,7 +6,7 @@ import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 type Review = {
   text: string
   author: string
-  country: string
+  date: string
 }
 
 type Props = {
@@ -18,26 +18,26 @@ type Props = {
 
 const defaultReviews: Review[] = [
   {
-    text: 'Amazing experience! The boat was in perfect condition and the skipper knew all the best hidden spots along the coast.',
-    author: 'Marco T.',
-    country: 'Italy',
+    text: 'IVO ist just a really nice guy, not complicated and flexibel. We had a great time with a great boat!',
+    author: 'Steven',
+    date: '9/12/2025',
   },
   {
-    text: 'Unforgettable day with my family. Professional service, beautiful boat, and stunning destinations. Highly recommended!',
-    author: 'Thomas K.',
-    country: 'Germany',
+    text: 'We enjoyed the trip :)',
+    author: 'Susanne',
+    date: '8/19/2025',
   },
   {
-    text: "We've rented boats before but this was by far the best experience. The attention to detail was impressive.",
-    author: 'Sophie L.',
-    country: 'France',
+    text: 'Wonderful boat booked at the last minute for an 4 hour afternoon trip. We were 4 adults and 5 kids and had a fabulous afternoon. Highly recommend and will certainly use again!',
+    author: 'Soraya',
+    date: '7/30/2025',
   },
 ]
 
 export default function ReviewsSection({
-  rating = 4.9,
-  reviewCount = 127,
-  clickandboatUrl = 'https://www.clickandboat.com/en/boat-rental/i%C4%8Di%C4%87i/motorboat/jeanneau-merry-fisher-795-rpeebjq',
+  rating = 4.8,
+  reviewCount = 78,
+  clickandboatUrl = 'https://www.clickandboat.com/en/boat-rental/opatija/motorboat/jeanneau-cap-camarat-8-5-cc-868rp6q',
   reviews = defaultReviews,
 }: Props) {
   const [currentReview, setCurrentReview] = useState(0)
@@ -106,7 +106,7 @@ export default function ReviewsSection({
                     {reviews[currentReview].author}
                   </span>
                   {' · '}
-                  {reviews[currentReview].country}
+                  {reviews[currentReview].date}
                 </p>
               </div>
 

@@ -52,7 +52,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed top-0 left-0 right-0 h-1/2 z-10 bg-deep-navy/95 backdrop-blur-sm md:hidden">
+        <div className="fixed top-0 left-0 right-0 h-1/2 z-50 bg-deep-navy/95 backdrop-blur-sm md:hidden">
           <nav className="flex flex-col items-center justify-center h-full gap-6">
             <a
               href="#fleet"
