@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 const featuredBoats = [
   {
@@ -19,6 +22,8 @@ const featuredBoats = [
 ]
 
 export default function HeroSection() {
+  const t = useTranslations('Hero')
+
   return (
     <section className="relative h-svh w-full overflow-hidden bg-deep-navy">
       {/* Background Image - different for mobile/desktop */}
@@ -26,7 +31,7 @@ export default function HeroSection() {
         {/* Mobile image */}
         <Image
           src="/images/IMG_4865.jpg"
-          alt="Cranchi Z 35 cruising on Adriatic"
+          alt={t('altText')}
           fill
           className="object-cover md:hidden"
           priority
@@ -34,7 +39,7 @@ export default function HeroSection() {
         {/* Desktop image */}
         <Image
           src="/images/IMG_4865.jpg"
-          alt="Cranchi Z 35 cruising on Adriatic"
+          alt={t('altText')}
           fill
           className="hidden object-cover md:block"
           priority
@@ -47,13 +52,13 @@ export default function HeroSection() {
       {/* Title Content - Top on mobile only */}
       <div className="absolute inset-x-0 top-28 z-10 px-5 md:hidden">
         <span className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-sand">
-          Opatija • Kvarner Bay
+          {t('location')}
         </span>
 
         <h1 className="text-[11vw] font-semibold leading-[0.95] tracking-[-0.02em] text-warm-white">
-          Your Adriatic
+          {t('title1')}
           <br />
-          <span className="text-sand">Adventure</span>
+          <span className="text-sand">{t('title2')}</span>
         </h1>
       </div>
 
@@ -61,18 +66,17 @@ export default function HeroSection() {
       <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 md:px-10 md:pb-10 lg:px-16 lg:pb-14">
         {/* Text Content - Desktop only */}
         <span className="mb-3 hidden text-sm font-medium uppercase tracking-[0.2em] text-sand md:block">
-          Opatija • Kvarner Bay
+          {t('location')}
         </span>
 
         <h1 className="hidden font-semibold leading-[0.95] tracking-[-0.02em] text-warm-white md:block md:text-6xl lg:text-7xl">
-          Your Adriatic
+          {t('title1')}
           <br />
-          <span className="text-sand">Adventure</span>
+          <span className="text-sand">{t('title2')}</span>
         </h1>
 
         <p className="max-w-[280px] text-sm leading-relaxed text-warm-white/60 md:mt-5 md:max-w-md md:text-base">
-          Your gateway to the Adriatic. Discover Cres, Krk, Crikvenica and the stunning Kvarner
-          coastline.
+          {t('description')}
         </p>
 
         {/* Boat Thumbnails - inline on mobile, absolute on desktop */}

@@ -1,0 +1,203 @@
+{
+  "Navbar": {
+    "brand": "ALL IN ONE",
+    "charter": "Charter",
+    "fleet": "Fleet",
+    "explore": "Explore",
+    "reviews": "Reviews",
+    "menu": "Menu"
+  },
+  "Hero": {
+    "location": "Opatija • Kvarner Bay",
+    "title1": "Your Adriatic",
+    "title2": "Adventure",
+    "description": "Your gateway to the Adriatic. Discover Cres, Krk, Crikvenica and the stunning Kvarner coastline.",
+    "altText": "Cranchi Z 35 cruising on Adriatic"
+  },
+  "Info": {
+    "headline1": "Experience the",
+    "headlineHighlight1": "crystal clear waters",
+    "headline2": "of Kvarner Bay, where every journey becomes",
+    "headlineHighlight2": "an unforgettable adventure.",
+    "stats": {
+      "vessels": "Premium vessels",
+      "experience": "Years of experience",
+      "guests": "Happy guests"
+    },
+    "aboutUs": "About Us",
+    "aboutText1a": "All In One Charter",
+    "aboutText1b": "is a boat charter agency based in Opatija, Croatia. With over 10 years of experience in the Kvarner area, we pride ourselves on offering the best quality service.",
+    "aboutText2": "Our fleet features boats of various sizes and power to suit every preference and budget. Season runs from late April through October — the perfect time to explore the Adriatic."
+  },
+  "Fleet": {
+    "title": "Our Fleet",
+    "subtitle": "Choose your perfect vessel",
+    "filterAll": "All boats",
+    "filterSmall": "Up to 7 guests",
+    "filterLarge": "7+ guests",
+    "viewDetails": "View details"
+  },
+  "Destinations": {
+    "label": "Destinations",
+    "title1": "Where will your",
+    "title2": "adventure",
+    "title3": "take you?",
+    "description": "Crystal-clear waters and hidden beaches await. Each destination offers its own unique charm.",
+    "viewAll": "View all",
+    "locations": {
+      "cresIsland": "Cres Island",
+      "krkIsland": "Krk Island",
+      "istria": "Istria",
+      "vinodolCoast": "Vinodol Coast",
+      "opatijaRiviera": "Opatija Riviera"
+    }
+  },
+  "Map": {
+    "title1": "Explore the",
+    "title2": "Kvarner Bay",
+    "description": "Discover hidden coves, pristine beaches, and charming coastal towns",
+    "loading": "Loading map...",
+    "legendStart": "Starting point (Ičići)",
+    "legendDestinations": "Destinations",
+    "fromIcici": "from Ičići",
+    "destinations": {
+      "icici": {
+        "description": "Your starting point for Adriatic adventures",
+        "highlights": ["Marina", "Easy access to all destinations", "Beautiful bay"]
+      },
+      "opatija": {
+        "description": "The pearl of Adriatic tourism",
+        "highlights": ["Historic villas", "Lungomare promenade", "Elegant architecture"]
+      },
+      "moscenickaDraga": {
+        "description": "Charming fishing village with pebble beaches",
+        "highlights": ["Authentic atmosphere", "Great seafood", "Quiet coves"]
+      },
+      "brsec": {
+        "description": "Hidden paradise perched on cliffs",
+        "highlights": ["Panoramic views", "Secluded beaches", "Medieval architecture"]
+      },
+      "rabac": {
+        "description": "Pearl of Kvarner Bay",
+        "highlights": ["White pebble beaches", "Turquoise water", "Water sports"]
+      },
+      "cres": {
+        "description": "Unspoiled island beauty",
+        "highlights": ["Venetian architecture", "Griffon vultures", "Blue cave"]
+      },
+      "lubenice": {
+        "description": "Medieval hilltop village with stunning views",
+        "highlights": ["One of most beautiful beaches", "Ancient stone houses", "Untouched nature"]
+      },
+      "valun": {
+        "description": "Secluded bay with crystal clear water",
+        "highlights": ["Hidden gem", "Stone houses", "Perfect for swimming"]
+      },
+      "malinska": {
+        "description": "Green oasis on the island of Krk",
+        "highlights": ["Pine forests", "Family beaches", "Romantic sunsets"]
+      },
+      "krk": {
+        "description": "Golden island with rich history",
+        "highlights": ["Roman ruins", "Frankopan castle", "Local wine"]
+      },
+      "baska": {
+        "description": "Famous for stunning pebble beach",
+        "highlights": ["Vela plaža beach", "Glagolitic heritage", "Hiking trails"]
+      },
+      "crikvenica": {
+        "description": "Popular family resort with sandy beaches",
+        "highlights": ["Shallow waters", "Promenade", "Wellness tradition"]
+      },
+      "noviVinodolski": {
+        "description": "Historic coastal town with thermal springs",
+        "highlights": ["Frankopan tower", "Wine tradition", "Family beaches"]
+      },
+      "beli": {
+        "description": "Ancient hilltop village with griffon vulture sanctuary and pristine beaches.",
+        "highlights": ["Griffon vultures", "Medieval village", "Secluded coves"]
+      },
+      "dragozetici": {
+        "description": "Secluded pebble beach accessible only by boat – pure untouched nature.",
+        "highlights": ["Boat-only access", "Crystal clear water", "Cliff jumping"]
+      },
+      "porozina": {
+        "description": "Quiet port village with crystal-clear waters perfect for swimming.",
+        "highlights": ["Ferry port", "Calm waters", "Local tavern"]
+      }
+    }
+  },
+  "Reviews": {
+    "label": "Reviews",
+    "basedOn": "Based on",
+    "reviewsCount": "reviews",
+    "readAll": "Read all on Click&Boat"
+  },
+  "Office": {
+    "label": "Visit Us",
+    "title": "Our Office",
+    "location": "Location",
+    "marina": "Marina",
+    "hours": "Hours",
+    "hoursValue": "Mon – Sun, 9:00 – 18:00",
+    "openMaps": "Open in Google Maps",
+    "altText": "All In One Charter Office at ACI Marina Opatija"
+  },
+  "Contact": {
+    "whatsapp": "WhatsApp",
+    "call": "Call us",
+    "email": "Email",
+    "defaultMessage": "Hi! I'm interested in booking a boat charter."
+  },
+  "BoatPage": {
+    "back": "Back",
+    "photos": "photos",
+    "more": "more",
+    "viewAllPhotos": "View all {count} photos",
+    "pricing": {
+      "fullDay": "Full Day (8h)",
+      "halfDay": "Half Day (4h)",
+      "weekly": "Weekly (7d)",
+      "bookNow": "Book Now",
+      "bookMessage": "Hi, I would like to book \"{boatName}\""
+    },
+    "specs": {
+      "guests": "Guests",
+      "length": "Length",
+      "width": "Width",
+      "maxSpeed": "Max Speed",
+      "fuelTank": "Fuel Tank",
+      "year": "Year",
+      "maxCapacity": "Max. Capacity",
+      "motor": "Motor",
+      "waterTank": "Water Tank",
+      "cruisingSpeed": "Cruising Speed",
+      "fuelConsumption": "Fuel Consumption",
+      "cabins": "Cabins",
+      "persons": "persons"
+    },
+    "about": "About this boat",
+    "goodToKnow": "Good to know",
+    "specifications": "Specifications",
+    "rentalInfo": {
+      "fuelNotIncluded": "Fuel not included",
+      "paidSeparately": "Paid separately",
+      "licenseRequired": "License required",
+      "validLicenseNeeded": "Valid boat license needed",
+      "skipperAvailable": "Skipper available",
+      "additionalFee": "Additional fee applies",
+      "cashCard": "Cash & card",
+      "bothAccepted": "Both accepted",
+      "skipperTraining": "Skipper training",
+      "learnNavigate": "Learn to navigate"
+    }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to Home"
+  },
+  "Common": {
+    "allInOne": "ALL IN ONE"
+  }
+}

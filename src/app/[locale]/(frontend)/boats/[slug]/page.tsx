@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
-import { getBoatBySlug, getAllBoatSlugs, getAllBoatImages } from '@/lib/boat-actions'
+import { getBoatBySlug, getAllBoatSlugs, getAllBoatImages, AppLocale } from '@/lib/boat-actions'
 import BoatPage from './BoatsPage'
 
 export const dynamic = 'force-static'
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BoatDetailPage({ params }: Props) {
-  const { slug } = await params
-  const boat = await getBoatBySlug(slug)
+  const { locale, slug } = await params
+  const boat = await getBoatBySlug(slug, locale as AppLocale)
 
   if (!boat) {
     notFound()

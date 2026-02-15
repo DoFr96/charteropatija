@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
+import { useTranslations } from 'next-intl'
 
 const destinations = [
   {
@@ -164,6 +165,7 @@ const containerStyle = {
 const center = { lat: 45.15, lng: 14.4 }
 export default function KvarnerMap() {
   const [selectedDest, setSelectedDest] = useState<(typeof destinations)[0] | null>(null)
+  const t = useTranslations('Map')
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -182,12 +184,12 @@ export default function KvarnerMap() {
     <section id="explore" className="bg-deep-navy py-24 md:py-32 lg:py-40">
       <div className="px-5 md:px-10 lg:px-16">
         <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
-          Explore the
+          {t('title1')}
           <br />
-          <span className="text-sand">Kvarner Bay</span>
+          <span className="text-sand">{t('title2')}</span>
         </h2>
         <p className="mt-4 max-w-md text-warm-white/50 md:mt-6 md:text-lg">
-          Discover hidden coves, pristine beaches, and charming coastal towns
+          {t('description')}
         </p>
       </div>
 
@@ -257,7 +259,7 @@ export default function KvarnerMap() {
             </GoogleMap>
           ) : (
             <div className="w-full h-full bg-deep-navy/50 flex items-center justify-center">
-              <p className="text-warm-white/50">Loading map...</p>
+              <p className="text-warm-white/50">{t('loading')}</p>
             </div>
           )}
         </div>
@@ -266,11 +268,11 @@ export default function KvarnerMap() {
         <div className="mt-8 flex justify-center gap-8">
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-cyan-400 border-2 border-cyan-700" />
-            <span className="text-sm text-warm-white/50">Starting point (Ičići)</span>
+            <span className="text-sm text-warm-white/50">{t('legendStart')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-sand" />
-            <span className="text-sm text-warm-white/50">Destinations</span>
+            <span className="text-sm text-warm-white/50">{t('legendDestinations')}</span>
           </div>
         </div>
       </div>

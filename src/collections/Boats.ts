@@ -76,6 +76,7 @@ export const Boats: CollectionConfig = {
             {
               name: 'description',
               type: 'textarea',
+              localized: true,
               admin: {
                 rows: 6,
                 placeholder: 'Detailed description of the boat...',

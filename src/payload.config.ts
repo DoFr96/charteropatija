@@ -32,6 +32,15 @@ export default buildConfig({
     },
   }),
   sharp,
+  localization: {
+    locales: [
+      { label: 'English', code: 'en' },
+      { label: 'Deutsch', code: 'de' },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
+
   plugins: [
     s3Storage({
       collections: {

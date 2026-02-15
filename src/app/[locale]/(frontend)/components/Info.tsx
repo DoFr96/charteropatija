@@ -1,31 +1,35 @@
-import { Ship, Calendar, Users, Anchor } from 'lucide-react'
+'use client'
 
-const stats = [
-  {
-    icon: Ship,
-    value: '7',
-    label: 'Premium vessels',
-  },
-  {
-    icon: Calendar,
-    value: '10+',
-    label: 'Years of experience',
-  },
-  {
-    icon: Users,
-    value: '500+',
-    label: 'Happy guests',
-  },
-]
+import { Ship, Calendar, Users, Anchor } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export default function InfoSection() {
+  const t = useTranslations('Info')
+
+  const stats = [
+    {
+      icon: Ship,
+      value: '7',
+      label: t('stats.vessels'),
+    },
+    {
+      icon: Calendar,
+      value: '10+',
+      label: t('stats.experience'),
+    },
+    {
+      icon: Users,
+      value: '500+',
+      label: t('stats.guests'),
+    },
+  ]
+
   return (
     <section className="bg-deep-navy px-5 pb-16 pt-40 md:px-10 md:pb-24 md:pt-32 lg:px-16 lg:pb-32 lg:pt-40">
       <div className="mx-auto max-w-5xl">
         {/* Large Text */}
         <h2 className="text-[7vw] font-medium leading-[1.1] tracking-[-0.02em] text-warm-white md:text-4xl lg:text-5xl">
-          Experience the <span className="text-sand">crystal clear waters</span> of Kvarner Bay,
-          where every journey becomes <span className="text-sand">an unforgettable adventure.</span>
+          {t('headline1')} <span className="text-sand">{t('headlineHighlight1')}</span> {t('headline2')} <span className="text-sand">{t('headlineHighlight2')}</span>
         </h2>
 
         {/* About Us + Stats */}
@@ -36,14 +40,14 @@ export default function InfoSection() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sand/10">
                 <Anchor className="h-5 w-5 text-sand" />
               </div>
-              <span className="text-sand text-sm font-medium tracking-wide uppercase">About Us</span>
+              <span className="text-sand text-sm font-medium tracking-wide uppercase">{t('aboutUs')}</span>
             </div>
             <div className="space-y-4 text-warm-white/70 leading-relaxed">
               <p>
-                <span className="text-warm-white font-medium">All In One Charter</span> is a boat charter agency based in Opatija, Croatia. With over 10 years of experience in the Kvarner area, we pride ourselves on offering the best quality service.
+                <span className="text-warm-white font-medium">{t('aboutText1a')}</span> {t('aboutText1b')}
               </p>
               <p>
-                Our fleet features boats of various sizes and power to suit every preference and budget. Season runs from late April through October — the perfect time to explore the Adriatic.
+                {t('aboutText2')}
               </p>
             </div>
           </div>

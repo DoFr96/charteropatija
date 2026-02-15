@@ -105,8 +105,12 @@ export async function getBoatsForFleet(): Promise<BoatCard[]> {
 // ============================================
 // DETAIL PAGE - Full data
 // ============================================
+export type AppLocale = 'en' | 'de'
 
-export async function getBoatBySlug(slug: string): Promise<BoatFull | null> {
+export async function getBoatBySlug(
+  slug: string,
+  locale: AppLocale = 'en',
+): Promise<BoatFull | null> {
   const payload = await getPayload({ config })
 
   const { docs } = await payload.find({
@@ -114,6 +118,7 @@ export async function getBoatBySlug(slug: string): Promise<BoatFull | null> {
     where: {
       slug: { equals: slug },
     },
+    locale: locale === 'en' ? undefined : locale,
     limit: 1,
     depth: 2,
   })

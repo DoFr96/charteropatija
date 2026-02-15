@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 type Review = {
   text: string
@@ -42,6 +43,7 @@ export default function ReviewsSection({
 }: Props) {
   const [currentReview, setCurrentReview] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const t = useTranslations('Reviews')
 
   const nextReview = () => {
     setCurrentReview((prev) => (prev + 1) % reviews.length)
@@ -63,12 +65,12 @@ export default function ReviewsSection({
   }, [isAutoPlaying, reviews.length])
 
   return (
-    <section className="py-20 md:py-28 bg-warm-white">
+    <section id="reviews" className="py-20 md:py-28 bg-warm-white">
       <div className="px-5 md:px-10 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
           {/* Section label */}
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-deep-navy/40">
-            Reviews
+            {t('label')}
           </span>
 
           <div className="mt-8 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
@@ -80,7 +82,7 @@ export default function ReviewsSection({
               </div>
               <div className="mt-2">
                 <p className="text-deep-navy/60">
-                  Based on <span className="font-medium text-deep-navy">{reviewCount}</span> reviews
+                  {t('basedOn')} <span className="font-medium text-deep-navy">{reviewCount}</span> {t('reviewsCount')}
                 </p>
                 <a
                   href={clickandboatUrl}
@@ -88,7 +90,7 @@ export default function ReviewsSection({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 mt-2 text-sm font-medium text-deep-navy hover:text-sand transition-colors"
                 >
-                  Read all on Click&Boat
+                  {t('readAll')}
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>

@@ -9,7 +9,11 @@ import ReviewsSection from './components/Reviews'
 import { getBoatsForFleet } from '@/lib/boat-actions'
 import OfficeSection from './components/Office'
 
-export const dynamic = 'force-static'
+import { routing } from '@/i18n/routing'
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
+
 export default async function HomePage() {
   const boats = await getBoatsForFleet()
   return (

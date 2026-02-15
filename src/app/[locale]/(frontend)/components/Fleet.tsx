@@ -2,8 +2,9 @@
 
 import { useState, useRef } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { Users, Ruler, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import type { BoatCard } from '@/lib/boat-actions'
 
 type Props = {
@@ -15,6 +16,7 @@ type Filter = 'all' | 'small' | 'large'
 export default function FleetSection({ boats }: Props) {
   const [filter, setFilter] = useState<Filter>('all')
   const scrollRef = useRef<HTMLDivElement>(null)
+  const t = useTranslations('Fleet')
   // scroll funkcionalnost
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollRef.current) return
@@ -40,10 +42,10 @@ export default function FleetSection({ boats }: Props) {
       {/* Header */}
       <div className="px-5 md:px-10 lg:px-16">
         <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
-          Our Fleet
+          {t('title')}
         </h2>
         <p className="mt-4 text-warm-white/50 md:mt-6 md:text-lg pl-1">
-          Choose your perfect vessel
+          {t('subtitle')}
         </p>
         {/* Filter Buttons & Navigation Arrows */}
         <div className="mt-10 flex items-center justify-between md:mt-12">
@@ -56,7 +58,7 @@ export default function FleetSection({ boats }: Props) {
                   : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
               }`}
             >
-              All boats
+              {t('filterAll')}
             </button>
             <button
               onClick={() => setFilter('small')}
@@ -66,7 +68,7 @@ export default function FleetSection({ boats }: Props) {
                   : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
               }`}
             >
-              Up to 7 guests
+              {t('filterSmall')}
             </button>
             <button
               onClick={() => setFilter('large')}
@@ -76,7 +78,7 @@ export default function FleetSection({ boats }: Props) {
                   : 'border border-warm-white/20 text-warm-white hover:border-warm-white/40'
               }`}
             >
-              7+ guests
+              {t('filterLarge')}
             </button>
           </div>
 
@@ -151,7 +153,7 @@ export default function FleetSection({ boats }: Props) {
 
                 {/* CTA */}
                 <div className="mt-6 flex items-center gap-2 text-sand">
-                  <span className="text-base font-medium">View details</span>
+                  <span className="text-base font-medium">{t('viewDetails')}</span>
                   <svg
                     className="h-4 w-4 transition-transform group-hover:translate-x-1"
                     fill="none"

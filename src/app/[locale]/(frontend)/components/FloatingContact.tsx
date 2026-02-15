@@ -2,16 +2,17 @@
 
 import { useState } from 'react'
 import { X, Phone, MessageCircle, Mail } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const PHONE_NUMBER = '+385911507107'
-const WHATSAPP_MESSAGE = "Hi! I'm interested in booking a boat charter." // Opcijski default message
 const EMAIL_ADDRESS = 'charter.icici@outlook.com'
 
 export default function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('Contact')
 
   const phoneLink = `tel:${PHONE_NUMBER}`
-  const whatsappLink = `https://wa.me/${PHONE_NUMBER.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+  const whatsappLink = `https://wa.me/${PHONE_NUMBER.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(t('defaultMessage'))}`
   const emailLink = `mailto:${EMAIL_ADDRESS}`
 
   return (
@@ -30,7 +31,7 @@ export default function FloatingContact() {
           className="group flex items-center gap-3"
         >
           <span className="px-3 py-1.5 rounded-lg bg-deep-navy text-warm-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            WhatsApp
+            {t('whatsapp')}
           </span>
           <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
             <MessageCircle className="w-5 h-5 text-white" fill="white" />
@@ -40,7 +41,7 @@ export default function FloatingContact() {
         {/* Phone */}
         <a href={phoneLink} className="group flex items-center gap-3">
           <span className="px-3 py-1.5 rounded-lg bg-deep-navy text-warm-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            Call us
+            {t('call')}
           </span>
           <div className="w-12 h-12 rounded-full bg-sand flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
             <Phone className="w-5 h-5 text-deep-navy" />
@@ -50,7 +51,7 @@ export default function FloatingContact() {
         {/* Email */}
         <a href={emailLink} className="group flex items-center gap-3">
           <span className="px-3 py-1.5 rounded-lg bg-deep-navy text-warm-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            Email
+            {t('email')}
           </span>
           <div className="w-12 h-12 rounded-full bg-[#0078D4] flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
             <Mail className="w-5 h-5 text-white" />

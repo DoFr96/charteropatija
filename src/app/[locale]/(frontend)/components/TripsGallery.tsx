@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 const destinations = [
   {
@@ -64,22 +65,23 @@ const destinations = [
 ]
 
 export default function TripsGallery() {
+  const t = useTranslations('Destinations')
+
   return (
     <section className="bg-deep-navy py-24 md:py-32 lg:py-40">
       {/* Header - keeps padding */}
       <div className="px-5 md:px-10 lg:px-16">
         <div className="max-w-2xl">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-sand">
-            Destinations
+            {t('label')}
           </span>
           <h2 className="mt-3 text-4xl font-semibold text-warm-white md:text-5xl lg:text-6xl">
-            Where will your
+            {t('title1')}
             <br />
-            <span className="text-sand">adventure</span> take you?
+            <span className="text-sand">{t('title2')}</span> {t('title3')}
           </h2>
           <p className="mt-4 text-warm-white/50 md:mt-6 md:text-lg">
-            Crystal-clear waters and hidden beaches await. Each destination offers its own unique
-            charm.
+            {t('description')}
           </p>
         </div>
       </div>
@@ -161,7 +163,7 @@ export default function TripsGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/50 via-transparent to-transparent" />
                 <div className="absolute bottom-3 right-3">
                   <span className="px-3 py-1.5 rounded-lg bg-warm-white text-deep-navy text-xs font-medium">
-                    View all
+                    {t('viewAll')}
                   </span>
                 </div>
               </div>
@@ -202,7 +204,7 @@ export default function TripsGallery() {
                 {i === 4 ? (
                   <div className="absolute bottom-4 right-4">
                     <span className="px-4 py-2 rounded-lg bg-warm-white text-deep-navy text-sm font-medium">
-                      View all
+                      {t('viewAll')}
                     </span>
                   </div>
                 ) : (
@@ -271,7 +273,7 @@ export default function TripsGallery() {
             </div>
             <div className="absolute top-4 right-4">
               <span className="px-4 py-2 rounded-lg bg-warm-white text-deep-navy text-sm font-medium">
-                View all
+                {t('viewAll')}
               </span>
             </div>
           </div>
