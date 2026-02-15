@@ -8,6 +8,7 @@ import TripsGallery from './components/TripsGallery'
 import ReviewsSection from './components/Reviews'
 import { getBoatsForFleet } from '@/lib/boat-actions'
 import OfficeSection from './components/Office'
+import { LazySection } from './components/LazySection'
 
 import { routing } from '@/i18n/routing'
 export function generateStaticParams() {
@@ -22,7 +23,10 @@ export default async function HomePage() {
       <HeroSection />
       <Info />
       <FleetSection boats={boats} />
-      <KvarnerMap />
+
+      <LazySection fallbackHeight="h-[800px]">
+        <KvarnerMap />
+      </LazySection>
       <TripsGallery />
       <OfficeSection />
       <ReviewsSection />
