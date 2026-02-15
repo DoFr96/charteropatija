@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { motion, AnimatePresence } from 'framer-motion'
 
 type Review = {
   text: string
@@ -34,6 +35,21 @@ const defaultReviews: Review[] = [
     date: '7/30/2025',
   },
 ]
+
+// Animation variants
+const reviewVariants = {
+  initial: { opacity: 0, x: 20 },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease: 'easeOut' as const }
+  },
+  exit: {
+    opacity: 0,
+    x: -20,
+    transition: { duration: 0.3, ease: 'easeIn' as const }
+  }
+}
 
 export default function ReviewsSection({
   rating = 4.8,
@@ -69,13 +85,25 @@ export default function ReviewsSection({
       <div className="px-5 md:px-10 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
           {/* Section label */}
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-deep-navy/40">
+          <motion.span
+            className="text-xs font-medium uppercase tracking-[0.2em] text-deep-navy/40"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             {t('label')}
-          </span>
+          </motion.span>
 
           <div className="mt-8 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
             {/* Left - Rating */}
-            <div className="flex-shrink-0">
+            <motion.div
+              className="flex-shrink-0"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex items-baseline gap-2">
                 <span className="text-6xl md:text-7xl font-semibold text-deep-navy">{rating}</span>
                 <Star className="w-8 h-8 text-sand fill-sand" />
@@ -94,58 +122,82 @@ export default function ReviewsSection({
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right - Review Carousel */}
-            <div className="flex-1 relative">
+            <motion.div
+              className="flex-1 relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            >
               {/* Quote */}
-              <div className="min-h-[140px] md:min-h-[120px]">
-                <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-deep-navy leading-relaxed">
-                  &ldquo;{reviews[currentReview].text}&rdquo;
-                </blockquote>
-                <p className="mt-4 text-deep-navy/60">
-                  <span className="font-medium text-deep-navy">
-                    {reviews[currentReview].author}
-                  </span>
-                  {' · '}
-                  {reviews[currentReview].date}
-                </p>
+              <div className="min-h-[140px] md:min-h-[120px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentReview}
+                    variants={reviewVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-deep-navy leading-relaxed">
+                      &ldquo;{reviews[currentReview].text}&rdquo;
+                    </blockquote>
+                    <p className="mt-4 text-deep-navy/60">
+                      <span className="font-medium text-deep-navy">
+                        {reviews[currentReview].author}
+                      </span>
+                      {' · '}
+                      {reviews[currentReview].date}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               {/* Navigation */}
               <div className="mt-8 flex items-center gap-4">
-                <button
+                <motion.button
                   onClick={prevReview}
                   className="w-10 h-10 rounded-full border border-deep-navy/20 flex items-center justify-center text-deep-navy hover:bg-deep-navy hover:text-warm-white transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={nextReview}
                   className="w-10 h-10 rounded-full border border-deep-navy/20 flex items-center justify-center text-deep-navy hover:bg-deep-navy hover:text-warm-white transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <ChevronRight className="w-5 h-5" />
-                </button>
+                </motion.button>
 
                 {/* Dots */}
                 <div className="flex gap-2 ml-2">
                   {reviews.map((_, idx) => (
-                    <button
+                    <motion.button
                       key={idx}
                       onClick={() => {
                         setCurrentReview(idx)
                         setIsAutoPlaying(false)
                       }}
-                      className={`w-2 h-2 rounded-full transition-all ${
+                      className={`h-2 rounded-full transition-all ${
                         idx === currentReview
-                          ? 'bg-deep-navy w-6'
+                          ? 'bg-deep-navy'
                           : 'bg-deep-navy/20 hover:bg-deep-navy/40'
                       }`}
+                      animate={{
+                        width: idx === currentReview ? 24 : 8,
+                      }}
+                      transition={{ duration: 0.3 }}
                     />
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

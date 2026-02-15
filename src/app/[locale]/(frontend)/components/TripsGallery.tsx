@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
 
 const destinations = [
   {
@@ -64,6 +65,33 @@ const destinations = [
   },
 ]
 
+// Animation variants
+const headingVariants = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' as const }
+  }
+}
+
+const galleryContainerVariants = {
+  initial: {},
+  whileInView: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+}
+
+const galleryItemVariants = {
+  initial: { opacity: 0, y: 30, scale: 0.95 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'easeOut' as const }
+  }
+}
+
 export default function TripsGallery() {
   const t = useTranslations('Destinations')
 
@@ -72,26 +100,54 @@ export default function TripsGallery() {
       {/* Header - keeps padding */}
       <div className="px-5 md:px-10 lg:px-16">
         <div className="max-w-2xl">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-sand">
+          <motion.span
+            className="text-xs font-medium uppercase tracking-[0.2em] text-sand"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             {t('label')}
-          </span>
-          <h2 className="mt-3 text-4xl font-semibold text-warm-white md:text-5xl lg:text-6xl">
+          </motion.span>
+          <motion.h2
+            className="mt-3 text-4xl font-semibold text-warm-white md:text-5xl lg:text-6xl"
+            variants={headingVariants}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: '-100px' }}
+          >
             {t('title1')}
             <br />
             <span className="text-sand">{t('title2')}</span> {t('title3')}
-          </h2>
-          <p className="mt-4 text-warm-white/50 md:mt-6 md:text-lg">
+          </motion.h2>
+          <motion.p
+            className="mt-4 text-warm-white/50 md:mt-6 md:text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+          >
             {t('description')}
-          </p>
+          </motion.p>
         </div>
       </div>
 
       {/* Gallery - full width with minimal padding */}
       <div className="mt-12 md:mt-16 px-5 md:px-4 lg:px-6 xl:px-8">
         {/* Mobile: Simple 2-column grid */}
-        <div className="grid grid-cols-2 gap-3 md:hidden">
+        <motion.div
+          className="grid grid-cols-2 gap-3 md:hidden"
+          variants={galleryContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           {destinations.slice(0, 6).map((dest) => (
-            <div key={dest.id} className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
+            <motion.div
+              key={dest.id}
+              className="group relative aspect-[3/4] overflow-hidden rounded-2xl"
+              variants={galleryItemVariants}
+            >
               <Image
                 src={dest.image}
                 alt={dest.name}
@@ -103,14 +159,23 @@ export default function TripsGallery() {
                 <h3 className="text-sm font-semibold text-warm-white">{dest.name}</h3>
                 <p className="text-xs text-warm-white/60">{dest.location}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Tablet: 4 slike (1 velika + 3) */}
-        <div className="hidden md:flex lg:hidden gap-2 h-[400px]">
+        <motion.div
+          className="hidden md:flex lg:hidden gap-2 h-[400px]"
+          variants={galleryContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           {/* Large left */}
-          <div className="group relative w-1/2 overflow-hidden rounded-xl cursor-pointer">
+          <motion.div
+            className="group relative w-1/2 overflow-hidden rounded-xl cursor-pointer"
+            variants={galleryItemVariants}
+          >
             <Image
               src={destinations[0].image}
               alt={destinations[0].name}
@@ -124,11 +189,14 @@ export default function TripsGallery() {
               </p>
               <h3 className="mt-1 text-lg font-semibold text-warm-white">{destinations[0].name}</h3>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right - 1 top + 2 bottom */}
           <div className="w-1/2 flex flex-col gap-2">
-            <div className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer">
+            <motion.div
+              className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer"
+              variants={galleryItemVariants}
+            >
               <Image
                 src={destinations[1].image}
                 alt={destinations[1].name}
@@ -139,9 +207,12 @@ export default function TripsGallery() {
               <div className="absolute bottom-3 left-3">
                 <h3 className="text-sm font-semibold text-warm-white">{destinations[1].name}</h3>
               </div>
-            </div>
+            </motion.div>
             <div className="flex-1 flex gap-2">
-              <div className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer">
+              <motion.div
+                className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer"
+                variants={galleryItemVariants}
+              >
                 <Image
                   src={destinations[2].image}
                   alt={destinations[2].name}
@@ -152,8 +223,11 @@ export default function TripsGallery() {
                 <div className="absolute bottom-3 left-3">
                   <h3 className="text-sm font-semibold text-warm-white">{destinations[2].name}</h3>
                 </div>
-              </div>
-              <div className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer">
+              </motion.div>
+              <motion.div
+                className="group relative flex-1 overflow-hidden rounded-xl cursor-pointer"
+                variants={galleryItemVariants}
+              >
                 <Image
                   src={destinations[3].image}
                   alt={destinations[3].name}
@@ -166,15 +240,24 @@ export default function TripsGallery() {
                     {t('viewAll')}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Laptop: 5 slika (1 velika + 2x2) */}
-        <div className="hidden lg:flex xl:hidden gap-3 h-[480px]">
+        <motion.div
+          className="hidden lg:flex xl:hidden gap-3 h-[480px]"
+          variants={galleryContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           {/* Large left */}
-          <div className="group relative w-[45%] overflow-hidden rounded-2xl cursor-pointer">
+          <motion.div
+            className="group relative w-[45%] overflow-hidden rounded-2xl cursor-pointer"
+            variants={galleryItemVariants}
+          >
             <Image
               src={destinations[0].image}
               alt={destinations[0].name}
@@ -188,12 +271,16 @@ export default function TripsGallery() {
               </p>
               <h3 className="mt-1 text-xl font-semibold text-warm-white">{destinations[0].name}</h3>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right - 2x2 grid */}
           <div className="w-[55%] grid grid-cols-2 grid-rows-2 gap-3">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group relative overflow-hidden rounded-2xl cursor-pointer">
+              <motion.div
+                key={i}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                variants={galleryItemVariants}
+              >
                 <Image
                   src={destinations[i].image}
                   alt={destinations[i].name}
@@ -214,15 +301,24 @@ export default function TripsGallery() {
                     </h3>
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Desktop XL: 6 slika (1 velika + 2x2 + 1 visoka) */}
-        <div className="hidden xl:flex gap-3 h-[520px]">
+        <motion.div
+          className="hidden xl:flex gap-3 h-[520px]"
+          variants={galleryContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           {/* Large left */}
-          <div className="group relative w-[38%] overflow-hidden rounded-2xl cursor-pointer">
+          <motion.div
+            className="group relative w-[38%] overflow-hidden rounded-2xl cursor-pointer"
+            variants={galleryItemVariants}
+          >
             <Image
               src={destinations[0].image}
               alt={destinations[0].name}
@@ -238,12 +334,16 @@ export default function TripsGallery() {
                 {destinations[0].name}
               </h3>
             </div>
-          </div>
+          </motion.div>
 
           {/* Middle - 2x2 grid */}
           <div className="w-[40%] grid grid-cols-2 grid-rows-2 gap-3">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group relative overflow-hidden rounded-2xl cursor-pointer">
+              <motion.div
+                key={i}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                variants={galleryItemVariants}
+              >
                 <Image
                   src={destinations[i].image}
                   alt={destinations[i].name}
@@ -254,12 +354,15 @@ export default function TripsGallery() {
                 <div className="absolute bottom-3 left-4">
                   <h3 className="text-sm font-semibold text-warm-white">{destinations[i].name}</h3>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Tall right */}
-          <div className="group relative w-[22%] overflow-hidden rounded-2xl cursor-pointer">
+          <motion.div
+            className="group relative w-[22%] overflow-hidden rounded-2xl cursor-pointer"
+            variants={galleryItemVariants}
+          >
             <Image
               src={destinations[5].image}
               alt={destinations[5].name}
@@ -276,8 +379,8 @@ export default function TripsGallery() {
                 {t('viewAll')}
               </span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Users, Ruler, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { BoatCard } from '@/lib/boat-actions'
 
 type Props = {
@@ -12,6 +13,48 @@ type Props = {
 }
 
 type Filter = 'all' | 'small' | 'large'
+
+// Animation variants
+const headingVariants = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' as const },
+  },
+}
+
+const filterContainerVariants = {
+  initial: {},
+  whileInView: {
+    transition: { staggerChildren: 0.05, delayChildren: 0.2 },
+  },
+}
+
+const filterButtonVariants = {
+  initial: { opacity: 0, y: 10 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut' as const },
+  },
+}
+
+const cardVariants = {
+  initial: { opacity: 0, scale: 0.95, y: 20 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut' as const },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    y: -10,
+    transition: { duration: 0.3, ease: 'easeIn' as const },
+  },
+}
 
 export default function FleetSection({ boats }: Props) {
   const [filter, setFilter] = useState<Filter>('all')
@@ -41,16 +84,35 @@ export default function FleetSection({ boats }: Props) {
     <section id="fleet" className="bg-deep-navy py-24 md:py-32 lg:py-40">
       {/* Header */}
       <div className="px-5 md:px-10 lg:px-16">
-        <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
+        <motion.h2
+          className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl"
+          variants={headingVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {t('title')}
-        </h2>
-        <p className="mt-4 text-warm-white/50 md:mt-6 md:text-lg pl-1">
+        </motion.h2>
+        <motion.p
+          className="mt-4 text-warm-white/50 md:mt-6 md:text-lg pl-1"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        >
           {t('subtitle')}
-        </p>
+        </motion.p>
         {/* Filter Buttons & Navigation Arrows */}
-        <div className="mt-10 flex items-center justify-between md:mt-12">
+        <motion.div
+          className="mt-10 flex items-center justify-between md:mt-12"
+          variants={filterContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           <div className="flex gap-2">
-            <button
+            <motion.button
+              variants={filterButtonVariants}
               onClick={() => setFilter('all')}
               className={`whitespace-nowrap rounded-full px-3 py-2 text-xs font-medium md:px-5 md:py-2.5 md:text-sm  ${
                 filter === 'all'
@@ -59,8 +121,9 @@ export default function FleetSection({ boats }: Props) {
               }`}
             >
               {t('filterAll')}
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              variants={filterButtonVariants}
               onClick={() => setFilter('small')}
               className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
                 filter === 'small'
@@ -69,8 +132,9 @@ export default function FleetSection({ boats }: Props) {
               }`}
             >
               {t('filterSmall')}
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              variants={filterButtonVariants}
               onClick={() => setFilter('large')}
               className={`rounded-full px-5 py-2.5 text-sm font-medium  ${
                 filter === 'large'
@@ -79,11 +143,11 @@ export default function FleetSection({ boats }: Props) {
               }`}
             >
               {t('filterLarge')}
-            </button>
+            </motion.button>
           </div>
 
           {/* Navigation Arrows - desktop only */}
-          <div className="hidden md:flex gap-2">
+          <motion.div className="hidden md:flex gap-2" variants={filterButtonVariants}>
             <button
               onClick={() => scroll('left')}
               className="w-12 h-12 rounded-full border border-warm-white/20 flex items-center justify-center hover:border-warm-white/40 transition"
@@ -96,8 +160,8 @@ export default function FleetSection({ boats }: Props) {
             >
               <ChevronRight className="w-5 h-5 text-warm-white" />
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Horizontal Scroll Cards */}
@@ -106,67 +170,73 @@ export default function FleetSection({ boats }: Props) {
         className="mt-12 snap-x snap-mandatory scroll-pl-5 overscroll-x-contain overflow-x-auto scrollbar-hide md:mt-16 md:snap-none"
       >
         <div className="flex gap-5 px-5 pb-4 md:gap-8 md:px-10 lg:px-16">
-          {' '}
-          {filteredBoats.map((boat) => (
-            <Link
-              href={`/boats/${boat.slug}`}
-              key={boat.id}
-              className="snap-start snap-always group relative w-[295px] flex-shrink-0 overflow-hidden rounded-2xl backdrop-blur-sm bg-warm-white/[0.03] border border-warm-white/10 transition-all duration-500 hover:shadow-lg hover:shadow-sand/10 hover:border-warm-white/20 hover:-translate-y-1 md:w-[400px]"
-            >
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sand/50 to-transparent" />
-              {/* Image */}
+          <AnimatePresence mode="popLayout">
+            {filteredBoats.map((boat, index) => (
+              <motion.div
+                key={boat.id}
+                variants={cardVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                layout
+                transition={{ delay: index * 0.05 }}
+              >
+                <Link
+                  href={`/boats/${boat.slug}`}
+                  className="snap-start snap-always group relative w-[295px] flex-shrink-0 overflow-hidden rounded-2xl backdrop-blur-sm bg-warm-white/[0.03] border border-warm-white/10 transition-all duration-500 hover:shadow-lg hover:shadow-sand/10 hover:border-warm-white/20 hover:-translate-y-1 md:w-[400px] block"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sand/50 to-transparent" />
+                  {/* Image */}
 
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={boat.featuredImage.url}
-                  alt={boat.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* 
-                  
-                  
-                <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/60 to-transparent" />
-                  
-                  */}
-              </div>
-
-              {/* Content */}
-              <div className="p-6 text-left md:p-8">
-                <h3 className="text-xl font-semibold text-warm-white md:text-2xl">{boat.name}</h3>
-
-                {/* Specs */}
-                <div className="mt-5 flex gap-5">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-sand" />
-                    <span className="text-base text-warm-white/70">{boat.capacity}</span>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={boat.featuredImage.url}
+                      alt={boat.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Ruler className="h-4 w-4 text-sand" />
-                    <span className="text-base text-warm-white/70">{boat.length}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-sand" />
-                    <span className="text-base text-warm-white/70">{boat.year}</span>
-                  </div>
-                </div>
 
-                {/* CTA */}
-                <div className="mt-6 flex items-center gap-2 text-sand">
-                  <span className="text-base font-medium">{t('viewDetails')}</span>
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          ))}
+                  {/* Content */}
+                  <div className="p-6 text-left md:p-8">
+                    <h3 className="text-xl font-semibold text-warm-white md:text-2xl">
+                      {boat.name}
+                    </h3>
+
+                    {/* Specs */}
+                    <div className="mt-5 flex gap-5">
+                      <div className="flex items-center gap-2">
+                        <Users className="h-4 w-4 text-sand" />
+                        <span className="text-base text-warm-white/70">{boat.capacity}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Ruler className="h-4 w-4 text-sand" />
+                        <span className="text-base text-warm-white/70">{boat.length}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-sand" />
+                        <span className="text-base text-warm-white/70">{boat.year}</span>
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="mt-6 flex items-center gap-2 text-sand">
+                      <span className="text-base font-medium">{t('viewDetails')}</span>
+                      <svg
+                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
           {/* Spacer za padding na kraju */}
           <div className="w-1 flex-shrink-0 md:w-6" />
         </div>

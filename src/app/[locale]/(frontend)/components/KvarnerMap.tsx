@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
 
 const destinations = [
   {
@@ -163,6 +164,35 @@ const containerStyle = {
 }
 
 const center = { lat: 45.15, lng: 14.4 }
+
+// Animation variants
+const headingVariants = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' as const }
+  }
+}
+
+const mapContainerVariants = {
+  initial: { opacity: 0, scale: 0.98 },
+  whileInView: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, delay: 0.2, ease: 'easeOut' as const }
+  }
+}
+
+const legendVariants = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.4, ease: 'easeOut' as const }
+  }
+}
+
 export default function KvarnerMap() {
   const [selectedDest, setSelectedDest] = useState<(typeof destinations)[0] | null>(null)
   const t = useTranslations('Map')
@@ -183,18 +213,36 @@ export default function KvarnerMap() {
   return (
     <section id="explore" className="bg-deep-navy py-24 md:py-32 lg:py-40">
       <div className="px-5 md:px-10 lg:px-16">
-        <h2 className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl">
+        <motion.h2
+          className="text-5xl font-semibold text-warm-white md:text-6xl xl:text-7xl"
+          variants={headingVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {t('title1')}
           <br />
           <span className="text-sand">{t('title2')}</span>
-        </h2>
-        <p className="mt-4 max-w-md text-warm-white/50 md:mt-6 md:text-lg">
+        </motion.h2>
+        <motion.p
+          className="mt-4 max-w-md text-warm-white/50 md:mt-6 md:text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        >
           {t('description')}
-        </p>
+        </motion.p>
       </div>
 
       <div className="relative mt-12 md:mt-16 px-5 md:px-10 lg:px-16">
-        <div className="mx-auto max-w-5xl aspect-[9/16] md:aspect-[4/3]  overflow-hidden">
+        <motion.div
+          className="mx-auto max-w-5xl aspect-[9/16] md:aspect-[4/3] overflow-hidden"
+          variants={mapContainerVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {isLoaded ? (
             <GoogleMap
               mapContainerStyle={containerStyle}
@@ -262,10 +310,16 @@ export default function KvarnerMap() {
               <p className="text-warm-white/50">{t('loading')}</p>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Legend */}
-        <div className="mt-8 flex justify-center gap-8">
+        <motion.div
+          className="mt-8 flex justify-center gap-8"
+          variants={legendVariants}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: '-50px' }}
+        >
           <div className="flex items-center gap-2">
             <div className="h-2.5 w-2.5 rounded-full bg-cyan-400 border-2 border-cyan-700" />
             <span className="text-sm text-warm-white/50">{t('legendStart')}</span>
@@ -274,7 +328,7 @@ export default function KvarnerMap() {
             <div className="h-2.5 w-2.5 rounded-full bg-sand" />
             <span className="text-sm text-warm-white/50">{t('legendDestinations')}</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
