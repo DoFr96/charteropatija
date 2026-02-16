@@ -10,12 +10,12 @@ const menuContainerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
   },
   exit: {
     opacity: 0,
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
-  }
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
 }
 
 const menuItemVariants = {
@@ -23,19 +23,19 @@ const menuItemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' as const }
+    transition: { duration: 0.4, ease: 'easeOut' as const },
   },
   exit: {
     opacity: 0,
     y: -10,
-    transition: { duration: 0.2, ease: 'easeIn' as const }
-  }
+    transition: { duration: 0.2, ease: 'easeIn' as const },
+  },
 }
 
 const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
-  exit: { opacity: 0, transition: { duration: 0.2 } }
+  exit: { opacity: 0, transition: { duration: 0.2 } },
 }
 
 export default function Navbar() {
@@ -57,7 +57,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 pt-4 md:px-10 md:pt-6 lg:px-16">
+      <header className="absolute top-0 left-0 right-0 z-[60] flex items-center justify-between px-5 pt-4 md:px-10 md:pt-6 lg:px-16">
         <motion.div
           className="flex items-center gap-2"
           initial={{ opacity: 0, y: -10 }}
@@ -80,10 +80,16 @@ export default function Navbar() {
           <a href="#fleet" className="text-sm text-warm-white/70 hover:text-warm-white transition">
             {t('fleet')}
           </a>
-          <a href="#explore" className="text-sm text-warm-white/70 hover:text-warm-white transition">
+          <a
+            href="#explore"
+            className="text-sm text-warm-white/70 hover:text-warm-white transition"
+          >
             {t('explore')}
           </a>
-          <a href="#reviews" className="text-sm text-warm-white/70 hover:text-warm-white transition">
+          <a
+            href="#reviews"
+            className="text-sm text-warm-white/70 hover:text-warm-white transition"
+          >
             {t('reviews')}
           </a>
 
@@ -165,7 +171,7 @@ export default function Navbar() {
               <motion.a
                 href="#fleet"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl text-warm-white/70 hover:text-warm-white transition"
+                className="text-2xl text-warm-white/70 hover:text-warm-white "
                 variants={menuItemVariants}
               >
                 {t('fleet')}
@@ -173,7 +179,7 @@ export default function Navbar() {
               <motion.a
                 href="#explore"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl text-warm-white/70 hover:text-warm-white transition"
+                className="text-2xl text-warm-white/70 hover:text-warm-white "
                 variants={menuItemVariants}
               >
                 {t('explore')}
@@ -181,7 +187,7 @@ export default function Navbar() {
               <motion.a
                 href="#reviews"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl text-warm-white/70 hover:text-warm-white transition"
+                className="text-2xl text-warm-white/70 hover:text-warm-white "
                 variants={menuItemVariants}
               >
                 {t('reviews')}
