@@ -12,7 +12,7 @@ type Props = {
 
 export default function CountUp({ to, duration = 2, suffix = '', className = '' }: Props) {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true })
   const count = useMotionValue(0)
   const rounded = useTransform(count, (latest) => Math.round(latest))
   const [displayValue, setDisplayValue] = useState(0)
@@ -37,7 +37,8 @@ export default function CountUp({ to, duration = 2, suffix = '', className = '' 
 
   return (
     <motion.span ref={ref} className={className}>
-      {displayValue}{suffix}
+      {displayValue}
+      {suffix}
     </motion.span>
   )
 }
