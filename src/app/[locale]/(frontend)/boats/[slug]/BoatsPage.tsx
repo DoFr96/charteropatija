@@ -718,6 +718,7 @@ export default function BoatPage({ boat, images }: Props) {
                     alt={`${boat.name} - Image ${currentImage + 1}`}
                     fill
                     className="object-contain"
+                    unoptimized
                   />
                 </motion.div>
               </AnimatePresence>
