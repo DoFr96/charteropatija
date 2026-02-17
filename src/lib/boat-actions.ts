@@ -153,7 +153,9 @@ export async function getAllBoatSlugs(): Promise<string[]> {
 // HELPERS
 // ============================================
 
-export function getAllBoatImages(boat: BoatFull): string[] {
+{
+  /*
+  export function getAllBoatImages(boat: BoatFull): string[] {
   const images: string[] = []
 
   if (boat.featuredImage?.url) {
@@ -165,6 +167,28 @@ export function getAllBoatImages(boat: BoatFull): string[] {
       if (image?.url) {
         images.push(image.url)
       }
+    })
+  }
+
+  return images
+}
+  
+  */
+}
+export function getAllBoatImages(boat: BoatFull): string[] {
+  const images: string[] = []
+
+  const getOptimized = (img: any): string | null => {
+    return img?.sizes?.hero?.url || img?.url || null
+  }
+
+  const featured = getOptimized(boat.featuredImage)
+  if (featured) images.push(featured)
+
+  if (boat.gallery) {
+    boat.gallery.forEach((image: any) => {
+      const url = getOptimized(image)
+      if (url) images.push(url)
     })
   }
 
