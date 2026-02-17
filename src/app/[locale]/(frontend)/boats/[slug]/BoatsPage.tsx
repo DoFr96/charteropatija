@@ -89,9 +89,13 @@ export default function BoatPage({ boat, images }: Props) {
 
   // Preload all images in background
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
+
     images.forEach((src) => {
       const img = new window.Image()
-      img.src = `/_next/image?url=${encodeURIComponent(src)}&w=1920&q=75`
+      // Mobile: manja slika, Desktop: puna
+      const w = isMobile ? 828 : 1920
+      img.src = `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=75`
     })
   }, [images])
   // Lock scroll when lightbox is open
@@ -718,6 +722,7 @@ export default function BoatPage({ boat, images }: Props) {
                     alt={`${boat.name} - Image ${currentImage + 1}`}
                     fill
                     className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 1920px"
                   />
                 </motion.div>
               </AnimatePresence>
