@@ -179,7 +179,12 @@ export function getAllBoatImages(boat: BoatFull): string[] {
   const images: string[] = []
 
   const getOptimized = (img: any): string | null => {
-    return img?.sizes?.hero?.url || img?.url || null
+    const hero = img?.sizes?.hero?.url
+    const original = img?.url
+
+    if (hero && hero !== 'null') return hero
+    if (original && original !== 'null') return original
+    return null
   }
 
   const featured = getOptimized(boat.featuredImage)
