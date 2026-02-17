@@ -77,6 +77,7 @@ const lightboxImageVariants = {
 }
 
 export default function BoatPage({ boat, images }: Props) {
+  console.log('IMAGES:', JSON.stringify(images, null, 2))
   const [currentImage, setCurrentImage] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const t = useTranslations('BoatPage')

@@ -178,12 +178,15 @@ export async function getAllBoatSlugs(): Promise<string[]> {
 export function getAllBoatImages(boat: BoatFull): string[] {
   const images: string[] = []
 
+  const isValid = (url: any): url is string =>
+    typeof url === 'string' && url.length > 0 && !url.endsWith('/null')
+
   const getOptimized = (img: any): string | null => {
     const hero = img?.sizes?.hero?.url
     const original = img?.url
 
-    if (hero && hero !== 'null') return hero
-    if (original && original !== 'null') return original
+    if (isValid(hero)) return hero
+    if (isValid(original)) return original
     return null
   }
 
