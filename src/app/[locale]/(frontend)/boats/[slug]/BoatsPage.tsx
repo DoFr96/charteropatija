@@ -34,15 +34,15 @@ const heroImageVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.8, ease: 'easeOut' as const }
-  }
+    transition: { duration: 0.8, ease: 'easeOut' as const },
+  },
 }
 
 const staggerContainer = {
   initial: {},
   animate: {
-    transition: { staggerChildren: 0.05, delayChildren: 0.3 }
-  }
+    transition: { staggerChildren: 0.05, delayChildren: 0.3 },
+  },
 }
 
 const specCardVariants = {
@@ -51,8 +51,8 @@ const specCardVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.4, ease: 'easeOut' as const }
-  }
+    transition: { duration: 0.4, ease: 'easeOut' as const },
+  },
 }
 
 const galleryItemVariants = {
@@ -60,20 +60,20 @@ const galleryItemVariants = {
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: 'easeOut' as const }
-  }
+    transition: { duration: 0.5, ease: 'easeOut' as const },
+  },
 }
 
 const lightboxVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.2 } }
+  exit: { opacity: 0, transition: { duration: 0.2 } },
 }
 
 const lightboxImageVariants = {
   initial: { opacity: 0, scale: 0.95 },
   animate: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-  exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
+  exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
 }
 
 export default function BoatPage({ boat, images }: Props) {
@@ -90,10 +90,9 @@ export default function BoatPage({ boat, images }: Props) {
   useEffect(() => {
     images.forEach((src) => {
       const img = new window.Image()
-      img.src = src
+      img.src = `/_next/image?url=${encodeURIComponent(src)}&w=1920&q=75`
     })
   }, [images])
-
   // Lock scroll when lightbox is open
   useEffect(() => {
     if (lightboxOpen) {
@@ -174,18 +173,14 @@ export default function BoatPage({ boat, images }: Props) {
             initial="initial"
             animate="animate"
           >
-            <Image
-              src={images[0]}
-              alt={`${boat.name}`}
-              fill
-              className="object-cover"
-              priority
-            />
+            <Image src={images[0]} alt={`${boat.name}`} fill className="object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-deep-navy via-transparent to-deep-navy/30" />
 
             {/* Tap to view indicator */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-deep-navy/60 backdrop-blur-sm">
-              <span className="text-xs text-warm-white/80">{images.length} {t('photos')}</span>
+              <span className="text-xs text-warm-white/80">
+                {images.length} {t('photos')}
+              </span>
             </div>
           </motion.button>
         </div>
@@ -621,7 +616,9 @@ export default function BoatPage({ boat, images }: Props) {
               )}
               <div className="flex justify-between py-3 border-b border-warm-white/10">
                 <span className="text-warm-white/60">{t('specs.maxCapacity')}</span>
-                <span className="text-warm-white font-medium">{boat.capacity} {t('specs.persons')}</span>
+                <span className="text-warm-white font-medium">
+                  {boat.capacity} {t('specs.persons')}
+                </span>
               </div>
               {boat.motor && (
                 <div className="flex justify-between py-3 border-b border-warm-white/10">
