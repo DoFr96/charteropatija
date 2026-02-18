@@ -18,3 +18,11 @@
     overscroll-behavior: auto !important;
   }
 }
+
+@media (max-width: 768px) {
+  [style*='overflow: hidden'],
+  [style*='overflow:hidden'] {
+    outline: 5px solid red !important;
+    overflow: auto !important;
+  }
+}
