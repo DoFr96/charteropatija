@@ -1,0 +1,22 @@
+/* Fix mobile scroll in Payload admin */
+@media (max-width: 768px) {
+  body,
+  html {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  .payload__modal-container,
+  .drawer__content,
+  .collection-edit,
+  .document-drawer__content,
+  .drawer,
+  [class*='drawer'],
+  [class*='modal'] {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: auto !important;
+    max-height: 100vh;
+    touch-action: pan-y !important;
+  }
+}
