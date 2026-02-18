@@ -1,28 +1,26 @@
 /* Fix mobile scroll in Payload admin */
 @media (max-width: 768px) {
+  body,
+  body[style],
+  body[style*='overflow'] {
+    overflow: auto !important;
+    overflow-y: auto !important;
+    position: static !important;
+    height: auto !important;
+  }
+
   * {
     touch-action: pan-x pan-y !important;
   }
 
-  body,
-  html,
-  #app-root,
-  [class*='template'],
-  [class*='collection'],
-  [class*='upload'],
   [class*='drawer'],
   [class*='modal'],
-  [class*='bulk'] {
+  [class*='bulk'],
+  [class*='upload'],
+  .payload__modal-container {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    overscroll-behavior: auto !important;
-  }
-}
-
-@media (max-width: 768px) {
-  [style*='overflow: hidden'],
-  [style*='overflow:hidden'] {
-    outline: 5px solid red !important;
-    overflow: auto !important;
+    max-height: 100dvh !important;
+    height: auto !important;
   }
 }
