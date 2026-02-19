@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import CookieConsent from 'react-cookie-consent'
 
 export default function CookieBanner() {
@@ -31,9 +32,9 @@ export default function CookieBanner() {
       expires={365}
     >
       We use cookies to enhance your experience.{' '}
-      <a href="/privacy-policy" style={{ color: '#c4b59d' }}>
+      <Link href="/privacy-policy" style={{ color: '#c4b59d' }}>
         Privacy Policy
-      </a>
+      </Link>
     </CookieConsent>
   )
 }
