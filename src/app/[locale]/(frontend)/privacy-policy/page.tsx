@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
 
 export const metadata = {
-  title: 'Privacy Policy | Charter Opatija',
-  description: 'Privacy Policy for Charter Opatija boat rental services.',
+  title: 'Privacy Policy | All In One Charter',
+  description: 'Privacy Policy for All In One Charter boat rental services.',
 }
 
 export default function PrivacyPolicyPage() {
@@ -31,8 +31,8 @@ export default function PrivacyPolicyPage() {
             {/* Intro */}
             <section>
               <p>
-                Charter Opatija (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the
-                website charteropatija.com. This Privacy Policy explains how we collect, use, and
+                All In One Charter (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the
+                website allinonecharter.com. This Privacy Policy explains how we collect, use, and
                 protect your personal information when you visit our website or use our boat charter
                 services.
               </p>
@@ -191,7 +191,7 @@ export default function PrivacyPolicyPage() {
                 please contact us:
               </p>
               <div className="mt-4 p-5 rounded-2xl bg-warm-white/5 border border-warm-white/10">
-                <p className="text-warm-white font-medium">Charter Opatija</p>
+                <p className="text-warm-white font-medium">All In One Charter</p>
                 <p className="mt-2">Liburnijska 7, Ičići 51414, Croatia</p>
                 <p>
                   Email:{' '}
@@ -201,8 +201,8 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <p>
                   Phone:{' '}
-                  <a href="tel:+385911507107" className="text-sand hover:underline">
-                    +385 91 150 7107
+                  <a href="tel:00385916322769" className="text-sand hover:underline">
+                    00385 91 632 2769
                   </a>
                 </p>
               </div>

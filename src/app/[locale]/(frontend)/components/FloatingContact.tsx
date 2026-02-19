@@ -5,7 +5,7 @@ import { X, Phone, MessageCircle, Mail } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const PHONE_NUMBER = '+385911507107'
+const PHONE_NUMBER = '00385916322769'
 const EMAIL_ADDRESS = 'charter.icici@outlook.com'
 
 // Animation variants
