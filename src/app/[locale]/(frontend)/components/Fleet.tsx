@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Users, Ruler, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -58,8 +58,36 @@ const cardVariants = {
 
 export default function FleetSection({ boats }: Props) {
   const [filter, setFilter] = useState<Filter>('all')
+  const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
   const t = useTranslations('Fleet')
+
+  // Track active card on scroll (mobile dots)
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current) return
+    const container = scrollRef.current
+    const flexContainer = container.children[0] as HTMLElement
+    const card = flexContainer.children[0] as HTMLElement
+    if (!card) return
+    const gap = 20 // gap-5 = 20px
+    const cardWidth = card.offsetWidth + gap
+    const index = Math.round(container.scrollLeft / cardWidth)
+    setActiveIndex(Math.max(0, index))
+  }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    el.addEventListener('scroll', handleScroll, { passive: true })
+    return () => el.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  // Reset active index when filter changes
+  useEffect(() => {
+    setActiveIndex(0)
+    if (scrollRef.current) scrollRef.current.scrollLeft = 0
+  }, [filter])
+
   // scroll funkcionalnost
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollRef.current) return
@@ -241,6 +269,35 @@ export default function FleetSection({ boats }: Props) {
           <div className="w-1 flex-shrink-0 md:w-6" />
         </div>
       </div>
+
+      {/* Dots indicator - mobile only */}
+      {filteredBoats.length > 1 && (
+        <div className="md:hidden flex justify-center gap-1.5 pt-6">
+          {filteredBoats.map((_, idx) => (
+            <motion.button
+              key={idx}
+              onClick={() => {
+                if (!scrollRef.current) return
+                const flexContainer = scrollRef.current.children[0] as HTMLElement
+                const card = flexContainer.children[0] as HTMLElement
+                if (!card) return
+                const gap = 20
+                scrollRef.current.scrollTo({
+                  left: idx * (card.offsetWidth + gap),
+                  behavior: 'smooth',
+                })
+              }}
+              className={`h-1.5 rounded-full ${
+                idx === activeIndex ? 'bg-sand' : 'bg-warm-white/30'
+              }`}
+              animate={{
+                width: idx === activeIndex ? 24 : 6,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          ))}
+        </div>
+      )}
     </section>
   )
 }

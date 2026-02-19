@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import FloatingContact from './components/FloatingContact'
 import { getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
+import CookieBanner from './components/CookieBanner'
 
 export const metadata = {
   description: 'Rent a boat in Opatija. A variety of choices.',
@@ -47,6 +48,7 @@ export default async function LocaleLayout({
           <main>
             {children}
             <FloatingContact />
+            <CookieBanner />
           </main>
         </NextIntlClientProvider>
       </body>
