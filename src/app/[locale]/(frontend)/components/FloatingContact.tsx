@@ -5,18 +5,18 @@ import { X, Phone, MessageCircle, Mail } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const PHONE_NUMBER = '00385916322769'
+const PHONE_NUMBER = '385916322769'
 const EMAIL_ADDRESS = 'charter.icici@outlook.com'
 
 // Animation variants
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08, staggerDirection: -1 }
+    transition: { staggerChildren: 0.08, staggerDirection: -1 },
   },
   exit: {
-    transition: { staggerChildren: 0.05, staggerDirection: 1 }
-  }
+    transition: { staggerChildren: 0.05, staggerDirection: 1 },
+  },
 }
 
 const itemVariants = {
@@ -25,14 +25,14 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.3, ease: 'easeOut' as const }
+    transition: { duration: 0.3, ease: 'easeOut' as const },
   },
   exit: {
     opacity: 0,
     y: 10,
     scale: 0.8,
-    transition: { duration: 0.2, ease: 'easeIn' as const }
-  }
+    transition: { duration: 0.2, ease: 'easeIn' as const },
+  },
 }
 
 const fabVariants = {
@@ -40,8 +40,8 @@ const fabVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { delay: 1, duration: 0.4, ease: 'backOut' as const }
-  }
+    transition: { delay: 1, duration: 0.4, ease: 'backOut' as const },
+  },
 }
 
 const pulseVariants = {
@@ -52,9 +52,9 @@ const pulseVariants = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      ease: 'easeInOut' as const
-    }
-  }
+      ease: 'easeInOut' as const,
+    },
+  },
 }
 
 export default function FloatingContact() {
@@ -158,10 +158,7 @@ export default function FloatingContact() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <motion.div
-            animate={{ rotate: isOpen ? 45 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }}>
             {isOpen ? (
               <X className="w-6 h-6 text-warm-white" />
             ) : (

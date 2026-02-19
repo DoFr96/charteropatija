@@ -389,7 +389,7 @@ export default function BoatPage({ boat, images }: Props) {
                     <p className="mt-2 text-xs text-warm-white/50">{boat.priceNote}</p>
                   )}
                   <motion.a
-                    href={`https://wa.me/385911507107?text=${encodeURIComponent(t('pricing.bookMessage', { boatName: boat.name }))}`}
+                    href={`https://wa.me/385916322769?text=${encodeURIComponent(t('pricing.bookMessage', { boatName: boat.name }))}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 block w-full py-3 px-6 md:py-3.5 md:px-8 rounded-full bg-sand text-deep-navy font-medium hover:bg-sand/90 transition text-center"
