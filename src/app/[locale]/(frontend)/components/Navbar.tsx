@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/routing'
 import { motion, AnimatePresence } from 'framer-motion'
+import 'flag-icons/css/flag-icons.min.css'
 
 // Animation variants
 const menuContainerVariants = {
@@ -104,7 +105,7 @@ export default function Navbar() {
                   : 'text-warm-white/50 hover:text-warm-white'
               }`}
             >
-              <span>🇬🇧</span>
+              <span className="fi fi-gb" />
               <span>EN</span>
             </Link>
             <Link
@@ -116,7 +117,7 @@ export default function Navbar() {
                   : 'text-warm-white/50 hover:text-warm-white'
               }`}
             >
-              <span>🇩🇪</span>
+              <span className="fi fi-de" />
               <span>DE</span>
             </Link>
           </div>
@@ -208,7 +209,7 @@ export default function Navbar() {
                       : 'text-warm-white/50 hover:text-warm-white'
                   }`}
                 >
-                  <span>🇬🇧</span>
+                  <span className="fi fi-gb" />
                   <span>English</span>
                 </Link>
                 <Link
@@ -221,7 +222,7 @@ export default function Navbar() {
                       : 'text-warm-white/50 hover:text-warm-white'
                   }`}
                 >
-                  <span>🇩🇪</span>
+                  <span className="fi fi-de" />
                   <span>Deutsch</span>
                 </Link>
               </motion.div>
